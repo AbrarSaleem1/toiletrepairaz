@@ -609,15 +609,15 @@ p:last-child {
   display: inline-flex;
   align-items: center;
   gap: 0.6rem;
-  background: rgba(234, 88, 12, 0.12);
-  border: 1px solid rgba(234, 88, 12, 0.32);
-  padding: 0.38rem 1rem;
+  background: rgba(234, 88, 12, 0.14);
+  border: 1px solid rgba(234, 88, 12, 0.36);
+  padding: 0.42rem 1.15rem;
   border-radius: 50px;
-  font-size: 0.78rem;
+  font-size: 0.82rem;
   font-weight: 700;
   color: #fb923c;
   letter-spacing: 0.02em;
-  margin-bottom: 1.1rem;
+  margin-bottom: 1.35rem;
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
 }
@@ -654,29 +654,6 @@ p:last-child {
     transform: scale(2);
     opacity: 0;
   }
-}
-
-/* Eyebrow badge */
-.hero-eyebrow {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.45rem;
-  background: rgba(255, 255, 255, 0.08);
-  border: 1px solid rgba(255, 255, 255, 0.16);
-  color: #f1f5f9;
-  font-size: 0.75rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.36rem 0.95rem;
-  border-radius: 50px;
-  margin-bottom: 1.1rem;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.hero-eyebrow svg {
-  color: #fb923c;
 }
 
 /* Big Furnace Repair Pros H1 with Gradient Highlight */
