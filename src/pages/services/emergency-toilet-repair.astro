@@ -1,0 +1,277 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const serviceTitle = 'Emergency Toilet Repair';
+const serviceSlug = 'emergency-toilet-repair';
+
+const faqs = [
+  {
+    q: 'What should I do immediately if my toilet is actively overflowing onto the bathroom floor?',
+    a: 'Immediately reach behind the lower left side of the toilet and turn the metal oval knob (the angle stop shutoff valve) clockwise until it stops tight. If the valve is seized or stuck, remove the tank lid and push the rubber flapper down manually over the flush valve opening to stop water from leaving the tank.',
+  },
+  {
+    q: 'Do you charge extra hidden emergency fees for night or weekend calls?',
+    a: 'No. Arizona Toilet Repair Co. maintains straightforward, transparent flat-rate pricing 24 hours a day, 7 days a week. We clearly disclose all costs upfront before starting any emergency work, with zero hidden surprises.',
+  },
+  {
+    q: 'How fast can an emergency plumber arrive at my Arizona home?',
+    a: 'Because we maintain active mobile response units across the state, our average emergency response window is between 45 and 90 minutes depending on your specific city location and highway traffic.',
+  },
+  {
+    q: 'What constitutes an urgent toilet emergency versus a scheduled repair?',
+    a: 'An active overflow of sewage, water leaking through a ceiling below, a frozen/shattered bowl, or having only one bathroom in a residence with a completely non-functional fixture are treated as top-priority emergency dispatches.',
+  },
+  {
+    q: 'Do your emergency service vehicles carry replacement toilets and major parts?',
+    a: 'Yes. Our trucks are fully stocked mobile plumbing shops carrying high-output augers, replacement wax-free seals, commercial closet flanges, brass bolt sets, universal fill valves, and emergency replacement fixtures.',
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: `${serviceTitle} in Arizona`,
+      provider: {
+        '@type': 'PlumbingContractor',
+        name: businessName,
+        telephone: '+1-833-845-0906',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '9009 N 7th St #201',
+          addressLocality: 'Phoenix',
+          addressRegion: 'AZ',
+          postalCode: '85020',
+          addressCountry: 'US',
+        },
+      },
+      areaServed: { '@type': 'State', name: 'Arizona' },
+      description: '24/7 emergency toilet repair across Arizona. Immediate dispatch for overflowing bowls, sewage backup, cracked porcelain, and failed shutoff valves.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toiletrepairaz.us/services/' },
+        { '@type': 'ListItem', position: 3, name: serviceTitle, item: `https://toiletrepairaz.us/services/${serviceSlug}/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Same Day Emergency Toilet Repair in Arizona | 24/7 Rapid Response`}
+  description={`Toilet overflowing or backed up right now? Arizona Toilet Repair Co. provides 24/7 emergency toilet repair across Arizona. Immediate arrival: Call ${phone}.`}
+  canonical={`https://toiletrepairaz.us/services/${serviceSlug}/`}
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="/services/">Services</a>
+        <span class="separator">/</span>
+        <span class="current">{serviceTitle}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            24/7 Immediate Emergency Dispatch Statewide
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Emergency Toilet Repair in Arizona
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            Toilet overflows, sudden supply line ruptures, and sewer backups require immediate intervention. Our 24/7 emergency plumbers arrive equipped to stop flooding, clear severe stoppages, and restore sanitation fast.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Emergency Dispatch: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Rapid Response</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt="Emergency 24/7 toilet repair dispatch with rapid response plumbing tools in Arizona"
+              title="24/7 Emergency Toilet Repair Dispatch in Arizona"
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            Immediate Emergency Plumber On Call
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Rapid Response</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Fast dispatch across AZ</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years Experience</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Fully licensed & insured</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Transparent Pricing</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Flat rates, no surprise add-ons</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Fully Stocked Trucks</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Repairs completed in one trip</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Critical Toilet Emergencies We Resolve 24/7</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Plumbing emergencies rarely occur during standard business hours. Whether your toilet overflows on a Sunday morning or begins backing up raw sewage in the middle of the night, Arizona Toilet Repair Co. answers live and dispatches immediately.
+      </p>
+
+      <div style="margin: var(--space-8) 0; text-align: center;">
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid var(--color-border-light); max-width: 720px; margin: 0 auto;">
+          <img
+            src="/images/toilet-wax-ring-leak-repair.jpg"
+            alt="Emergency toilet removal, wax ring replacement, and floor seal restoration in Arizona home"
+            title="Emergency Toilet Wax Ring Repair - Arizona"
+            width="720"
+            height="480"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: auto; display: block; object-fit: cover;"
+          />
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: var(--space-2); font-style: italic;">
+          Our 24/7 mobile units arrive fully stocked to stop active overflows and replace failed closet wax seals on the spot.
+        </p>
+      </div>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-lg); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.3rem;">Common Emergency Scenarios:</h3>
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Uncontrolled Bowl Overflow:</strong> Water cascading over the rim onto tile or hardwood flooring.</li>
+          <li><strong>Main Sewer Backup:</strong> Wastewater rising in the toilet bowl when showers, washing machines, or sinks run.</li>
+          <li><strong>Seized Angle Stop Shutoff Valve:</strong> Inability to turn off the water supply due to mineral calcification.</li>
+          <li><strong>Active Ceiling Leaks:</strong> Water penetrating the ceiling beneath a second-floor bathroom fixture.</li>
+          <li><strong>Sole Bathroom Outage:</strong> Homes with only one toilet requiring urgent same-day restoration.</li>
+        </ul>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our Emergency Protocol</h2>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">1. Immediate Telephone Guidance</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">While our mobile unit is in transit, our dispatch specialist guides you through stopping active water flow to minimize interior property damage.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">2. Containment & Water Extraction</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">Upon arrival, our technician immediately isolates supply lines and contains standing wastewater to safeguard surrounding walls and floors.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">3. Root-Cause Diagnostic & Upfront Quote</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We determine whether the crisis is caused by a mechanical failure, deep line obstruction, or cracked flange, and provide a firm flat quote before proceeding.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">4. Full Repair, Testing & Sanitary Cleanup</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We replace broken components, clear lines, sanitize the work area, and conduct exhaustive flush tests to ensure 100% operational safety.</p>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-6);">Frequently Asked Questions</h2>
+      <div class="faq-list" style="margin-bottom: var(--space-10);">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-8); margin-bottom: var(--space-8);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-4);">Explore Related Toilet Services:</h3>
+        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+          <a href="/services/clogged-toilet-unclogging/" class="btn btn--outline btn--sm">Clogged Toilet Unclogging</a>
+          <a href="/services/toilet-leak-repair/" class="btn btn--outline btn--sm">Toilet Leak Repair</a>
+          <a href="/services/running-toilet-repair/" class="btn btn--outline btn--sm">Running Toilet Repair</a>
+          <a href="/services/flange-repair/" class="btn btn--outline btn--sm">Flange Repair</a>
+          <a href="/services/flapper-fill-valve-replacement/" class="btn btn--outline btn--sm">Flapper & Valve Replacement</a>
+          <a href="/services/commercial-toilet-repair/" class="btn btn--outline btn--sm">Commercial Restroom Repair</a>
+        </div>
+      </div>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.15rem;">24/7 Emergency Toilet Response Across Key Arizona Cities:</h3>
+        <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          Immediate 45-60 minute emergency plumber arrival available in:
+        </p>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="/locations/phoenix/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Phoenix Emergency Toilet Repair</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/tucson/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Tucson 24/7 Plumber</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/mesa/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Mesa Emergency Overflow</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/scottsdale/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Scottsdale Emergency Service</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/chandler/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Chandler Urgent Toilet Repair</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/gilbert/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Gilbert 24/7 Dispatch</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/flagstaff/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Flagstaff Emergency Plumber</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/" style="color: var(--color-accent); font-weight: 700; text-decoration: underline; font-size: 0.9rem;">View All 187 Cities &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Have a Toilet Emergency Right Now?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Don't wait until water damages your flooring or subfloor. Call our 24/7 Arizona emergency dispatch line immediately.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call 24/7 Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

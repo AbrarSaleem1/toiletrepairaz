@@ -1,0 +1,632 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { arizonaCities, type CityData, servicesList } from '../../data/cities';
+import { getCityRegionalContext } from '../../data/cityContext';
+
+export async function getStaticPaths() {
+  const existingSlugs = ['phoenix', 'mesa', 'scottsdale', 'chandler', 'gilbert'];
+  return arizonaCities
+    .filter(c => !existingSlugs.includes(c.slug))
+    .map(city => ({
+      params: { city: city.slug },
+      props: { city },
+    }));
+}
+
+interface Props {
+  city: CityData;
+}
+
+const { city } = Astro.props;
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const cityName = city.name;
+const countyName = city.county;
+const regionName = city.region;
+
+// Load deeply localized regional context
+const geoContext = getCityRegionalContext(countyName, regionName);
+
+// Editorial rotation angle to ensure distinct text structure across cities (0, 1, or 2)
+const angle = city.id % 3;
+
+// Nearby cities in same county or region for local internal linking mesh
+const nearbyCities = arizonaCities
+  .filter(c => c.slug !== city.slug && (c.county === city.county || c.region === city.region))
+  .slice(0, 6);
+
+// Key statewide metro hubs for internal linking authority
+const metroHubs = [
+  { name: 'Phoenix', slug: 'phoenix' },
+  { name: 'Tucson', slug: 'tucson' },
+  { name: 'Mesa', slug: 'mesa' },
+  { name: 'Scottsdale', slug: 'scottsdale' },
+  { name: 'Chandler', slug: 'chandler' },
+  { name: 'Gilbert', slug: 'gilbert' },
+].filter(h => h.slug !== city.slug);
+
+// Rotating in-content images with localized SEO attributes
+const inContentImages = [
+  {
+    src: '/images/toilet-flapper-fill-valve-repair.jpg',
+    alt: `Replacing mineral-scaled flapper and fill valve inside toilet tank in ${cityName}, AZ`,
+    title: `Toilet Tank Flapper & Fill Valve Replacement in ${cityName}, Arizona`,
+  },
+  {
+    src: '/images/toilet-wax-ring-leak-repair.jpg',
+    alt: `Replacing degraded toilet wax ring seal and inspecting closet flange in ${cityName}, AZ`,
+    title: `Toilet Wax Ring Leak Repair in ${cityName}, Arizona`,
+  },
+  {
+    src: '/images/modern-toilet-fixture-repair.jpg',
+    alt: `Modern toilet fixture repair, leak detection, and siphon jet descaling in ${cityName}, AZ`,
+    title: `Modern Toilet Repair and Descaling in ${cityName}, Arizona`,
+  },
+];
+const contentImg = inContentImages[city.id % inContentImages.length];
+
+// Standard base FAQs combined with regional specific FAQs
+const baseFaqs = [
+  {
+    q: `How quickly can an emergency plumber arrive at my home in ${cityName}?`,
+    a: `We maintain 24/7 mobile emergency dispatch throughout ${cityName} and surrounding ${countyName} County communities. For urgent emergencies like active bowl overflows, structural floor leaks, or homes with only one bathroom, a licensed technician typically arrives within 45 to 60 minutes.`,
+  },
+  {
+    q: `Do you charge flat rates with upfront pricing before starting work in ${cityName}?`,
+    a: `Yes. We provide complete pricing transparency. After an in-person physical evaluation of your toilet's mechanical components, our technician provides a firm, written flat-rate quote before turning a wrench. You will never encounter hidden trip charges, surprise fuel fees, or open-ended hourly labor meters.`,
+  },
+  {
+    q: `Are your plumbers licensed and insured to perform toilet repairs in ${cityName}, AZ?`,
+    a: `Yes. Every technician with ${businessName} holds active licensing through the Arizona Registrar of Contractors (ROC #329841), complies with Uniform Plumbing Code (UPC) and ${countyName} County municipal building codes, and carries comprehensive commercial liability and worker's compensation insurance.`,
+  },
+  {
+    q: `Can you repair a wobbling or rocking toilet in ${cityName} without cracking tile flooring?`,
+    a: `Yes. A rocking toilet bowl indicates that subfloor closet bolts have pulled loose or the mechanical flange collar has fractured beneath the base. We carefully remove the fixture, inspect the subfloor drain connection, install heavy-duty stainless steel repair collars anchored directly into the slab or subfloor, and stabilize the porcelain base with non-rotting composite shims.`,
+  },
+];
+
+// Combine 3 regional FAQs + 4 base FAQs = 7 deeply unique FAQs
+const faqs = [...geoContext.faqs, ...baseFaqs];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'PlumbingContractor',
+      name: `${businessName} - ${cityName}`,
+      url: `https://toiletrepairaz.us/locations/${city.slug}/`,
+      telephone: '+1-833-845-0906',
+      priceRange: '$$',
+      openingHoursSpecification: [
+        {
+          '@type': 'OpeningHoursSpecification',
+          dayOfWeek: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+          opens: '00:00',
+          closes: '23:59',
+        },
+      ],
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '9009 N 7th St #201',
+        addressLocality: 'Phoenix',
+        addressRegion: 'AZ',
+        postalCode: '85020',
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '33.5683',
+        longitude: '-112.0652',
+      },
+      areaServed: {
+        '@type': 'City',
+        name: `${cityName}, AZ`,
+      },
+      description: `Licensed 24/7 same day toilet repair in ${cityName}, Arizona. Clogged toilets, leaks, running valves, flange rebuilding, and emergency dispatch. ROC #329841.`,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://toiletrepairaz.us/locations/' },
+        { '@type': 'ListItem', position: 3, name: `${cityName}, AZ`, item: `https://toiletrepairaz.us/locations/${city.slug}/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Toilet Repair in ${cityName}, AZ | Same Day Toilet Repair`}
+  description={`Need toilet repair in ${cityName}, AZ? ${businessName} delivers 24/7 same day toilet repair, clog clearing, leak fixes, and flange rebuilds across ${cityName}. Call ${phone}.`}
+  canonical={`https://toiletrepairaz.us/locations/${city.slug}/`}
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <!-- Breadcrumb Bar -->
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="/locations/">Locations</a>
+        <span class="separator">/</span>
+        <span class="current">{cityName}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            {geoContext.regionName} • {countyName} County Dispatch
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Toilet Repair in {cityName}, AZ
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            When a toilet in {cityName} begins leaking around the base, hissing continuously through the night, or backing up with stubborn clogs, prompt local assistance is critical. {businessName} provides 24/7 emergency dispatch across {cityName} and surrounding {geoContext.primaryHighwayCorridors.join(', ')} corridors with heavy-duty commercial parts engineered for Arizona conditions.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call {cityName} Dispatch: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Rapid Response</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt={`Same day toilet repair and fixture diagnostic in ${cityName}, AZ - Arizona Toilet Repair Co.`}
+              title={`Same Day Toilet Repair Service in ${cityName}, AZ`}
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            24/7 {cityName} Emergency Dispatch
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div style="padding: var(--space-2);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 2px;">ROC Licensed & Insured</strong>
+          <span style="color: var(--color-text-light); font-size: 0.875rem;">Arizona ROC #329841</span>
+        </div>
+        <div style="padding: var(--space-2);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 2px;">45-60 Min Arrival</strong>
+          <span style="color: var(--color-text-light); font-size: 0.875rem;">Dispatched across {countyName} County</span>
+        </div>
+        <div style="padding: var(--space-2);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 2px;">Upfront Flat Rates</strong>
+          <span style="color: var(--color-text-light); font-size: 0.875rem;">Clear written price before work starts</span>
+        </div>
+        <div style="padding: var(--space-2);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 2px;">15+ Years Experience</strong>
+          <span style="color: var(--color-text-light); font-size: 0.875rem;">Dedicated toilet repair specialists</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Body -->
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 920px; margin: 0 auto;">
+
+      <!-- SECTION 1: Local Overview with Deep Unique Regional Dynamics -->
+      {angle === 0 && (
+        <div>
+          <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Precision Toilet Diagnostics and Restoration in {cityName}, AZ</h2>
+          <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+            Plumbing fixtures in {cityName} operate under demanding environmental stresses distinct to {countyName} County. Local tap water supplied via {geoContext.waterSource} carries a heavy mineral rating of {geoContext.waterHardnessGPG} ({geoContext.waterHardnessDesc}). Over years of routine operation, dissolved calcium and silica solidify inside the unglazed porcelain trapway and bottom siphon jet, turning smooth ceramic channels into rough, friction-heavy surfaces that cause frequent stoppages.
+          </p>
+          <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+            When a toilet in {cityName} begins leaking around the base, rocking when used, or constantly refilling, homeowners require specialized technicians who understand local water dynamics. At {businessName}, our trucks carry commercial drop-head augers, chloramine-resistant replacement flappers, and heavy-gauge stainless steel flange collars, ensuring we resolve your plumbing problem on the first trip.
+          </p>
+        </div>
+      )}
+
+      {angle === 1 && (
+        <div>
+          <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">How {cityName}'s Water Quality and Foundation Dynamics Impact Your Toilet</h2>
+          <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+            Homeowners throughout {cityName} frequently encounter toilet failures directly tied to {geoContext.regionName}'s unique geology and infrastructure. Residential foundations here rely heavily on {geoContext.soilFoundationProfile}. Seasonal shifting between wet and dry cycles exerts intense shear forces on drain waste vent (DWV) piping beneath the floor, which can warp wax rings or shear closet bolts.
+          </p>
+          <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+            Furthermore, municipal water delivered by {geoContext.localWaterUtility} carries {geoContext.waterHardnessGPG}. Combined with {geoContext.climateThermalStress}, conventional hardware store rubber seals quickly blister, warp, and fail. Our technicians provide specialized remediation including mechanical descaling, elastomeric urethane seal upgrades, and structural flange reconstruction across {cityName}.
+          </p>
+        </div>
+      )}
+
+      {angle === 2 && (
+        <div>
+          <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Emergency Toilet Repair and Restroom Solutions in {cityName}, AZ</h2>
+          <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+            A toilet failure in {cityName} is an urgent sanitary emergency that disrupts your household or commercial facility immediately. Properties throughout {countyName} County cope with {geoContext.plumbingRiskFocus}. When wastewater rises toward the bowl rim or seeps under bathroom tile flooring, rapid professional intervention is required to avoid expensive subfloor restoration.
+          </p>
+          <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+            Our mobile plumbing units patrol {cityName} and surrounding {geoContext.primaryHighwayCorridors[0]} corridors 24/7. From residential phantom flushing that skyrockets utility bills to commercial Sloan flushometers stuck wide open, {businessName} delivers prompt, upfront flat-rate solutions backed by our comprehensive workmanship guarantee.
+          </p>
+        </div>
+      )}
+
+      <!-- SECTION 2: Comprehensive Internal Linking to All 7 Services -->
+      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin: var(--space-10) 0 var(--space-12);">
+        <h3 style="color: var(--color-primary); font-size: 1.35rem; margin-bottom: var(--space-3);">Dedicated Toilet Services We Provide in {cityName}:</h3>
+        <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+          Click any specialized service below to review our diagnostic procedures, repair options, and upfront pricing:
+        </p>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5);">
+          
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
+              <a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Clogged Toilet Unclogging</a>
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
+              Heavy-duty drop-head closet augers that safely hook and extract foreign items without scratching ceramic glazes.
+            </p>
+            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
+              Explore Unclogging Solutions &rarr;
+            </a>
+          </div>
+
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
+              <a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Toilet Leak Repair</a>
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
+              Stop weeping base seals, tank-to-bowl gasket failures, supply line leaks, and hidden subfloor moisture damage.
+            </p>
+            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
+              View Leak Detection & Repair &rarr;
+            </a>
+          </div>
+
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
+              <a href="/services/running-toilet-repair/" style="color: inherit; text-decoration: none;">Running Toilet Repair</a>
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
+              Eliminate phantom flushes and hissing fill valves that waste hundreds of gallons per day on {cityName} water bills.
+            </p>
+            <a href="/services/running-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
+              Stop Phantom Tank Refills &rarr;
+            </a>
+          </div>
+
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
+              <a href="/services/flapper-fill-valve-replacement/" style="color: inherit; text-decoration: none;">Flapper & Fill Valve Replacement</a>
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
+              Commercial-grade silicone flappers and anti-siphon intake valves engineered to withstand high chloramine levels.
+            </p>
+            <a href="/services/flapper-fill-valve-replacement/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
+              Upgrade Tank Internals &rarr;
+            </a>
+          </div>
+
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
+              <a href="/services/emergency-toilet-repair/" style="color: inherit; text-decoration: none;">Emergency Toilet Repair</a>
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
+              Rapid 24/7 emergency dispatch for overflowing bowls, sewage backups, and catastrophic shutoff valve failures.
+            </p>
+            <a href="/services/emergency-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
+              Get 24/7 Immediate Help &rarr;
+            </a>
+          </div>
+
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
+              <a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Toilet Flange Repair</a>
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
+              Rebuild rotted cast-iron collars, fractured PVC flanges, and secure wobbling bowls directly to the slab or subfloor.
+            </p>
+            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
+              Rebuild Flange Collars &rarr;
+            </a>
+          </div>
+
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
+              <a href="/services/commercial-toilet-repair/" style="color: inherit; text-decoration: none;">Commercial Toilet Repair</a>
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
+              Commercial Sloan and Zurn flushometer servicing, ADA compliance adjustments, and high-traffic facility restrooms.
+            </p>
+            <a href="/services/commercial-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
+              Commercial Restroom Service &rarr;
+            </a>
+          </div>
+
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); display: flex; flex-direction: column; justify-content: center;">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
+              <a href="/services/" style="color: inherit; text-decoration: none;">Explore All Services</a>
+            </h4>
+            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
+              View our complete directory of professional toilet plumbing services offered across the entire state of Arizona.
+            </p>
+            <a href="/services/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
+              View Full Service Catalog &rarr;
+            </a>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- SECTION 3: Detailed Local Environmental & Geological Breakdown -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Local Water Quality & Plumbing Realities in {countyName} County</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Tap water provided to residences and commercial buildings in {cityName} originates primarily from {geoContext.waterSource}. According to regional utility testing, water in this area tests at {geoContext.waterHardnessGPG} ({geoContext.waterHardnessDesc}).
+      </p>
+      <div style="display: grid; grid-template-columns: 1.15fr 0.85fr; gap: var(--space-8); align-items: center; margin-bottom: var(--space-8);" class="hero-split-grid">
+        <div style="background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 6px;">Key Environmental Factors Impacting {cityName} Toilets:</strong>
+          <ul style="margin: 0; padding-left: var(--space-4); color: var(--color-text-secondary); line-height: 1.7;">
+            <li><strong>Water Source:</strong> {geoContext.waterSource}</li>
+            <li><strong>Measured Hardness:</strong> {geoContext.waterHardnessGPG} — {geoContext.waterHardnessDesc}</li>
+            <li><strong>Foundation Profile:</strong> {geoContext.soilFoundationProfile}</li>
+            <li><strong>Thermal Stress:</strong> {geoContext.climateThermalStress}</li>
+            <li><strong>Housing Era:</strong> {geoContext.housingEraProfile}</li>
+          </ul>
+        </div>
+        <div>
+          <div style="border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--color-border-light);">
+            <img
+              src={contentImg.src}
+              alt={contentImg.alt}
+              title={contentImg.title}
+              width="600"
+              height="450"
+              loading="lazy"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <p style="font-size: 0.825rem; color: var(--color-text-light); text-align: center; margin-top: 6px;">
+            Professional toilet repair & diagnostics in {cityName}, AZ
+          </p>
+        </div>
+      </div>
+
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Dissolved calcium and magnesium do not remain suspended in warm desert environments. Every time water sits in the tank or bowl, microscopic mineral crystals adhere to rubber seals, plastic valve stems, and unglazed porcelain passages. Within 2 to 3 years, the bottom siphon jet orifice clogs with mineral buildup, cutting flush velocity in half. Furthermore, municipal water providers in {countyName} County add chloramine disinfectants to control bacterial growth in hot distribution mains. Standard rubber flappers rapidly oxidize in chloraminated water, curling around the perimeter and causing silent leaks that run continuously.
+      </p>
+
+      <!-- SECTION 4: Subfloor & Foundation Challenges in City -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Subfloor Foundations & Structural Plumbing in {cityName}</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Residential architecture across {cityName} presents distinctive subfloor structural considerations that directly affect how toilets must be anchored and sealed:
+      </p>
+
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-5); background: white; border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Slab-on-Grade & Post-Tension Foundations:</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">
+            Homes in {cityName} are commonly constructed on monolithic concrete slabs with embedded DWV piping. When toilet closet bolts pull through aging plastic flange rings or cast-iron collars corrode, standard hardware will not hold. We install heavy-gauge stainless steel repair rings anchored into concrete using specialized masonry expansion anchors.
+          </p>
+        </div>
+        <div style="padding: var(--space-5); background: white; border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Subfloor Movement & Caliche Shifting:</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">
+            Expansive clay and caliche soil formations throughout {regionName} swell during rainy periods and contract during prolonged dry stretches. This subtle structural shifting exerts shear stress on rigid PVC and ABS drain lines beneath the slab, causing traditional wax seals to compress unevenly and leak wastewater under finished tile floors.
+          </p>
+        </div>
+        <div style="padding: var(--space-5); background: white; border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Tile & Stone Flooring Height Gaps:</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">
+            Bathroom remodels often replace thin sheet vinyl with thick ceramic, porcelain, or travertine tile. If the closet flange was not raised to sit flush on top of the newly finished floor, a standard wax ring sits in an open gap beneath the bowl. We install structural flange spacers and urethane wax-free gaskets to guarantee a watertight seal.
+          </p>
+        </div>
+      </div>
+
+      <!-- SECTION 5: 5 Chronic Toilet Failure Modes -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Diagnostic Analysis: 5 Common Toilet Failures in {cityName}</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        When our mobile dispatch desk receives a call from {cityName}, the mechanical issue typically stems from one of five chronic failure modes:
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">1. Siphon Jet Calcification & Incomplete Evacuation</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Many homeowners assume an incomplete flush is caused by a sewer clog. However, in {cityName}, calcium carbonate scale regularly closes the small siphon jet orifice at the base of the toilet bowl. Without proper jet velocity, the water swirls lazily in circles without creating the vacuum siphon needed to pull waste over the trap crest. We mechanically clean and descale internal ports to restore full factory flushing power.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">2. Silent Tank Leaks & Phantom Water Cycling</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        A phantom flush happens when water silently slips past a distorted flapper into the bowl. Every 20 to 45 minutes, the tank water drops low enough to trigger the fill valve, creating an audible hiss. In {cityName}, where municipal water rates operate on escalating tiers, a continuous leak can waste 200 to 500+ gallons daily, adding $80 to $150 to your monthly utility bill.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">3. Base Wax Ring Heat Softening & Tile Seepage</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Traditional beeswax rings soften under Arizona radiant slab heat. When weight shifts on a loose porcelain fixture, softened wax deforms and does not rebound. Every flush pushes a thin film of contaminated wastewater under the bowl base, staining tile grout lines, decaying subfloor framing, and emitting sewer odors. We replace compromised wax with modern elastomeric gaskets that maintain continuous elasticity.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">4. High Water Pressure Surges & Valve Vibrations</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Municipal water distribution across {countyName} County frequently operates at static pressures between 80 and 110 PSI. High incoming pressure strains delicate fill valve diaphragms, causing loud whistling, water hammer banging in walls, and sudden supply hose blowouts. Our plumbers test your home pressure, regulate supply stops, and install high-pressure anti-siphon valves.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-8);">5. Fractured Closet Flange Collars & Wobbling Bowls</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        A loose or rocking toilet bowl is a severe plumbing risk. Whenever someone sits on a wobbling toilet, the porcelain base acts as a crowbar against the closet bolts, risking a sudden crack that floods the bathroom with gallons of water. We remove the fixture, repair the underlying flange with stainless steel masonry anchors, and level the base using durable composite shims.
+      </p>
+
+      <!-- SECTION 6: Homeowner Preventative Maintenance Checklist -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Proactive Toilet Maintenance for {cityName} Residents</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Follow these practical steps to protect your bathroom plumbing and avoid unexpected emergency service calls:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-10);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Turn Shutoff Valves Biannually:</strong> The angle stop valve behind your toilet can seize up due to mineral deposits. Gently rotate the handle every six months to keep the valve stem clear and functional during an emergency.</li>
+          <li><strong>Perform an Overnight Food Coloring Test:</strong> Place 3 drops of dark food coloring in the tank before bed without flushing. If color seeps into the bowl by morning, your flapper has warped and requires prompt replacement.</li>
+          <li><strong>Avoid Corrosive Chemical In-Tank Drop-Ins:</strong> Bleach and chlorine cleaning pucks sit directly against rubber gaskets and brass tank bolts, eating through seals within months and voiding fixture warranties.</li>
+          <li><strong>Inspect Bowl Firmness:</strong> Gently push against your toilet with your knees. If the porcelain shifts or lifts off the floor tile, contact our technicians to stabilize the base before the flange fractures.</li>
+          <li><strong>Prevent Trap Evaporation in Seasonal Homes:</strong> If your {cityName} home remains vacant during summer or winter months, pour a cup of non-toxic mineral oil into the bowl to create an evaporation barrier that keeps sewer gas out.</li>
+        </ul>
+      </div>
+
+      <!-- SECTION 7: Upfront Pricing Commitment -->
+      <div style="border: 2px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); background: white; margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.3rem;">Upfront Flat-Rate Pricing — No Surprise Charges</h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+          We believe {cityName} homeowners and business owners deserve complete financial transparency before work starts. After performing an on-site physical evaluation of your fixture, our technician provides a firm written flat-rate quote.
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: var(--color-text);">
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No surprise hourly charges or open-ended labor meters</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fixed pricing approved by you in writing before any wrench turns</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Complete warranty coverage on all replacement valves, flanges, and seals</li>
+        </ul>
+      </div>
+
+      <!-- SECTION 8: 4-Step Repair Process -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our 4-Step Repair Process in {cityName}</h2>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 1: Rapid Arrival & Water Containment</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">Our stocked mobile service truck arrives at your {cityName} property. We immediately check supply shutoffs, protect finished bathroom flooring, and prevent sanitary overflow.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 2: Root-Cause Mechanical Diagnostic</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We check incoming water pressure, evaluate the closet flange collar, test internal tank seals with dye, and measure siphon jet velocity.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 3: Commercial-Grade Component Installation</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We install chloramine-resistant silicone flappers, quiet anti-siphon fill valves, heavy-duty brass tank bolts, or stainless steel flange repair collars.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 4: Operational Flush Testing & Area Sanitization</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We run multi-cycle operational test flushes, calibrate the tank refill line to manufacturer specs, sanitize the entire bathroom work area, and provide written documentation.</p>
+        </div>
+      </div>
+
+      <!-- Outbound ROC Authority Link -->
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-10);">
+        All plumbing repairs comply with standards regulated by the <a href="https://roc.az.gov/" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">Arizona Registrar of Contractors</a> (ROC #329841) and municipal plumbing codes enforced across {countyName} County.
+      </p>
+
+      <!-- SECTION 9: Internal Linking to Nearby Cities & Major Metro Hubs -->
+      <div style="background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-3);">Serving Communities Near {cityName}:</h3>
+        <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          Our licensed plumbing teams also provide 24/7 toilet repair across neighboring {countyName} County communities:
+        </p>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap; margin-bottom: var(--space-6);">
+          {nearbyCities.map((nc) => (
+            <a href={`/locations/${nc.slug}/`} class="btn btn--outline btn--sm">{nc.name} Toilet Repair</a>
+          ))}
+          <a href="/locations/" class="btn btn--outline btn--sm">View All 187 Cities &rarr;</a>
+        </div>
+
+        <h4 style="color: var(--color-primary); font-size: 1rem; margin-bottom: var(--space-2);">Key Arizona Metro Service Hubs:</h4>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          {metroHubs.map((mh) => (
+            <a href={`/locations/${mh.slug}/`} style="color: var(--color-primary); text-decoration: underline; font-size: 0.9rem;">
+              {mh.name} Toilet Repair
+            </a>
+          ))}
+        </div>
+      </div>
+
+      <!-- SECTION 10: Frequently Asked Questions (7 Localized FAQs) -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-6);">Frequently Asked Questions: {cityName} Toilet Repair</h2>
+      <div class="faq-list" style="margin-bottom: var(--space-10);">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Dealing With a Broken Toilet in {cityName}?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Call Arizona Toilet Repair Co. immediately for rapid 24/7 same day dispatch across {cityName}. Upfront flat pricing and guaranteed repairs.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call {cityName} Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact & Service Information -->
+  <section class="section" style="padding: var(--space-16) 0; background: var(--color-bg);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-8); align-items: start;">
+        <div class="card" style="padding: var(--space-8); border-top: 4px solid var(--color-accent); background: white; border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+          <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-3);">{cityName} Service Dispatch</h3>
+          <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+            Our mobile service plumbers operate across {cityName} and {countyName} County 24 hours a day, 7 days a week.
+          </p>
+          <p style="margin-bottom: var(--space-2);"><strong>Statewide Office:</strong> 9009 N 7th St #201, Phoenix, AZ 85020</p>
+          <p style="margin-bottom: var(--space-2);"><strong>Telephone:</strong> <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} style="color: var(--color-primary); font-weight: 700;">{phone}</a></p>
+          <p style="margin-bottom: var(--space-2);"><strong>Hours:</strong> Open 24/7 / 365 Days</p>
+          <p style="margin-bottom: var(--space-4);"><strong>License:</strong> Arizona ROC #329841</p>
+          <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg" style="width: 100%; text-align: center;">
+            Call For Immediate Dispatch: {phone}
+          </a>
+        </div>
+        <div class="card" style="padding: var(--space-4); overflow: hidden; background: white; border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+          <div style="width: 100%; height: 360px; border-radius: var(--radius-md); overflow: hidden;">
+            <iframe
+              title={`${cityName} Service Area Map`}
+              width="100%"
+              height="100%"
+              style="border:0;"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.2938883656345!2d-112.0674087!3d33.5683262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b6dfd54109407%3A0xe7bc38c201e7dc70!2s9009%20N%207th%20St%20%23201%2C%20Phoenix%2C%20AZ%2085020!5e0!3m2!1sen!2sus!4v1700000000000"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

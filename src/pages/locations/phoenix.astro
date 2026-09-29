@@ -1,0 +1,514 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const city = 'Phoenix';
+const state = 'AZ';
+const zipCodes = ['85001', '85003', '85004', '85006', '85008', '85012', '85014', '85016', '85018', '85020', '85022', '85028', '85032', '85044', '85048'];
+const neighborhoods = ['Arcadia', 'Ahwatukee Foothills', 'Camelback East', 'North Central Phoenix', 'Desert Ridge', 'Biltmore Area', 'Maryvale', 'South Mountain Village', 'Deer Valley', 'Encanto'];
+
+const faqs = [
+  {
+    q: 'How quickly can a toilet repair technician reach my Phoenix neighborhood?',
+    a: 'Because our headquarters and central dispatch facility is situated at 9009 N 7th St in North Central Phoenix, our mobile service units reach residences in Arcadia, Desert Ridge, Midtown, Maryvale, and Camelback East within 45 to 60 minutes. Urgent calls involving active sewage backflows or single-bathroom outages receive continuous 24/7 priority routing.',
+  },
+  {
+    q: 'Why does tap water in Phoenix cause toilet flappers to deteriorate so rapidly?',
+    a: 'Phoenix municipal water blends supplies from the Salt River, Verde River, and Central Arizona Project aqueduct, producing water hardness between 14 and 22 grains per gallon along with chemical chloramines. The combination of intense dissolved minerals and oxidizers breaks down standard flexible rubber flappers, causing them to warp, bubble, or leave black residue within two to three years.',
+  },
+  {
+    q: 'Are your Phoenix plumbing technicians licensed through the state registrar?',
+    a: 'Yes. Every plumber on our team holds active licensing through the Arizona Registrar of Contractors (ROC), complies with the City of Phoenix plumbing code amendments, and carries complete commercial general liability and workers compensation insurance coverage.',
+  },
+  {
+    q: 'Can extreme summer heat in Phoenix cause bathroom plumbing leaks?',
+    a: 'Yes. Summer attic and crawlspace temperatures in Phoenix regularly exceed 130°F, while bathroom ambient temperatures spike during cooling cycles. High heat accelerates the drying, hardening, and shrinking of rubber tank-to-bowl spud washers, closet flange wax rings, and plastic fill valve housings.',
+  },
+  {
+    q: 'Do you charge extra trip charges for emergency calls in outer Phoenix villages?',
+    a: 'No. Arizona Toilet Repair Co. uses an upfront flat-rate pricing system across all Phoenix urban villages, from Deer Valley and Desert Ridge in the north down to Ahwatukee Foothills in the south. You receive a firm, written quote before we turn a single wrench.',
+  },
+  {
+    q: 'How can I tell if my Phoenix home has a broken closet flange or just a bad wax ring?',
+    a: 'If your toilet rocks, wobbles, or shifts when you sit down, the closet flange ring beneath the porcelain is cracked or detached from the concrete slab. A failed wax ring alone will cause water or sewer gas leakage, but physical movement indicates the mechanical flange collar has broken.',
+  },
+  {
+    q: 'Why does my toilet flush sluggishly even after plunging in Phoenix?',
+    a: 'Sluggish flushing in Phoenix is commonly caused by calcium carbonate scale clogging the rim feed holes and the bottom siphon jet orifice. When mineral deposits constrict these openings, water cannot enter the bowl fast enough to establish a siphon vacuum, leaving waste behind.',
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'PlumbingContractor',
+      name: `${businessName} - ${city}`,
+      telephone: '+1-833-845-0906',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '9009 N 7th St #201',
+        addressLocality: 'Phoenix',
+        addressRegion: 'AZ',
+        postalCode: '85020',
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '33.5683',
+        longitude: '-112.0652',
+      },
+      areaServed: {
+        '@type': 'City',
+        name: 'Phoenix',
+        sameAs: 'https://en.wikipedia.org/wiki/Phoenix,_Arizona',
+      },
+      description: 'Professional 24/7 toilet repair, unclogging, leak stopping, and flange reconstruction services across Phoenix, Arizona.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://toiletrepairaz.us/locations/' },
+        { '@type': 'ListItem', position: 3, name: `${city}, AZ`, item: `https://toiletrepairaz.us/locations/phoenix/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Toilet Repair in Phoenix, AZ | Same Day Toilet Repair`}
+  description={`Struggling with a broken toilet in Phoenix? Arizona Toilet Repair Co. delivers 24/7 same day toilet repair, clog clearing, leak fixes, and flange rebuilds across Phoenix, AZ. Call ${phone}.`}
+  canonical="https://toiletrepairaz.us/locations/phoenix/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="/locations/">Locations</a>
+        <span class="separator">/</span>
+        <span class="current">Phoenix</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            Local Dispatch Center: 9009 N 7th St, Phoenix
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Toilet Repair in Phoenix, AZ
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            A malfunctioning toilet in the Valley of the Sun disrupts your household immediately. From hard water calcium buildup in Arcadia to shifting post-tension slab flanges in Desert Ridge, our licensed plumbers arrive fast with heavy-duty parts tailored to Phoenix water conditions.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Phoenix Dispatch: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Rapid Dispatch</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt="Same day professional toilet repair in Phoenix, AZ - plumbing diagnostic tools, supply lines, and fixture service"
+              title="Phoenix AZ Toilet Repair Service"
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            24/7 Phoenix Emergency Dispatch
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">ROC Licensed & Insured</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Arizona Contractor #329841</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">45-60 Min Response</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Dispatched from North Central Phoenix</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Upfront Flat Pricing</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Clear quotes, no hidden fees</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years Experience</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Specialized toilet plumbers</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Main Content Body (Deep Topical Coverage) -->
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      
+      <!-- Company Overview in Phoenix -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Serving Phoenix Homeowners and Businesses with Precision</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Living in Phoenix means coping with unique residential plumbing stresses. Between the relentless triple-digit summer heat and municipal water drawn from the Colorado River via the Central Arizona Project canal system, toilets in Maricopa County suffer wear that standard plumbing components cannot endure. At Arizona Toilet Repair Co., our central facility on North 7th Street coordinates mobile technicians who understand the specific mechanical demands of Valley plumbing systems.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        Whether you own a historic 1940s ranch home in the Encanto district with deteriorating cast-iron closet rings or a contemporary two-story residence in Desert Ridge experiencing phantom water cycling, we diagnose the exact failure point and restore dependable operation quickly.
+      </p>
+
+      <!-- Featured Services in Phoenix -->
+      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
+        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Core Toilet Services We Deliver in Phoenix:</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Obstinate Clog Clearing</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Mechanical drop-head augering that extracts deep blockages without scratching decorative Kohler, American Standard, or Toto bowl glaze.</p>
+            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Unclogging Process &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/running-toilet-repair/" style="color: inherit; text-decoration: none;">Phantom Flush & Running Repair</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Eliminate continuous tank refills and hissing valves that drive up high-tier Phoenix municipal water utility rates.</p>
+            <a href="/services/running-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Running Toilet Fixes &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Slab Closet Flange Reconstruction</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Reinforce cracked PVC collars and anchor corroded cast-iron pipes into Phoenix post-tension concrete slabs to stop wobbling bowls.</p>
+            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Flange Repair Details &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/emergency-toilet-repair/" style="color: inherit; text-decoration: none;">24/7 Emergency Dispatch</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Immediate on-site arrival across Phoenix for overflowing bowls, backed-up sewer branches, and burst shutoff lines.</p>
+            <a href="/services/emergency-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Emergency Procedures &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Specific Local Environmental Factors in Phoenix -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Why Phoenix Tap Water Destroys Toilet Components</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Tap water delivered through the City of Phoenix Water Services Department averages 14 to 22 grains of dissolved mineral hardness per gallon, classifying it as extremely hard water. This calcium carbonate and magnesium crust collects around internal rim holes and directly inside the siphon jet at the base of the toilet bowl. Over time, the restricted jet cannot generate adequate hydraulic draw, leading to sluggish, double-flush cycles that frustrate homeowners.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Furthermore, municipal water treatment facilities employ chloramines for disinfectant stability in high desert ambient temperatures. Standard neoprene and natural rubber toilet flappers sold in big-box hardware stores react poorly to chloramines. Within 24 months, the chemical causes rubber flappers to blister, lose flexibility, and dissolve into sticky residue. At Arizona Toilet Repair Co., we exclusively install commercial-grade red silicone flappers and anti-siphon fill valves engineered specifically to withstand desert water chemistry.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        During the scorching desert summer months, water entering residential plumbing from street mains frequently reaches temperatures in the high 80s or 90s Fahrenheit. Combined with attic heat radiating down into bathroom wall cavities, rubber gaskets expand and soften during the day, then contract as nighttime cooling takes effect. This constant thermal cycling breaks down tank-to-bowl sponge washers and accelerates hairline micro-fissures around porcelain mounting holes.
+      </p>
+
+      <div style="margin: var(--space-8) 0; text-align: center;">
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid var(--color-border-light); max-width: 720px; margin: 0 auto;">
+          <img
+            src="/images/toilet-flapper-fill-valve-repair.jpg"
+            alt="Replacing chlorine-damaged toilet flapper and anti-siphon fill valve in Phoenix, AZ home"
+            title="Toilet Tank Flapper and Fill Valve Replacement - Phoenix, AZ"
+            width="720"
+            height="480"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: auto; display: block; object-fit: cover;"
+          />
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: var(--space-2); font-style: italic;">
+          Heavy-duty chlorine-resistant flapper and precision fill valve assembly installed inside a Phoenix residential toilet tank.
+        </p>
+      </div>
+
+      <!-- Architectural & Subfloor Variations Across Phoenix -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Phoenix Housing Eras & Subfloor Plumbing Realities</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        The City of Phoenix encompasses a wide range of building eras, each presenting distinctive subfloor plumbing characteristics:
+      </p>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-8);">
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Mid-Century & Vintage Homes (1940s - 1970s):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Found throughout Encanto, Midtown, Coronado, and Central Phoenix. These properties frequently feature heavy cast-iron waste stacks encased in monolithic concrete slabs. Over several decades, hydrogen sulfide sewer gases dissolve the cast-iron flange collar from underneath. The anchor bolts lose grip, causing the toilet to wobble and breaking the seal.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Suburban Growth Era (1980s - 1990s):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Common in Ahwatukee Foothills, Deer Valley, and Paradise Valley Village. Builders transitioned to black ABS or early white PVC drain lines. Flange rings installed directly onto subfloors before finished ceramic tile was laid often sit below floor grade. Remodeling contractors who tile over existing surfaces create a height deficit, making standard wax rings fail prematurely.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Modern Master-Planned Communities (2000s - Present):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Prominent in Desert Ridge, Norterra, and Sonoran Foothills. These two-story residences utilize post-tension concrete slabs and engineered floor trusses. Micro-settling in desert soils can cause tension on rigid PVC closet flanges, while second-floor toilets subject wax seals to structural deflection, causing ceiling leaks below.</p>
+        </div>
+      </div>
+
+      <div style="margin: var(--space-8) 0; border-radius: 12px; overflow: hidden; box-shadow: var(--shadow-md); border: 1px solid var(--color-border-light);">
+        <img
+          src="/images/modern-toilet-fixture-repair.jpg"
+          alt="Precision toilet repair, leak detection, and descaling in Phoenix, AZ - Arizona Toilet Repair Co."
+          title="Phoenix Toilet Repair and Descaling Service"
+          width="800"
+          height="450"
+          loading="lazy"
+          style="width: 100%; height: auto; display: block; object-fit: cover; max-height: 400px;"
+        />
+        <div style="background: var(--color-bg-alt); padding: var(--space-3) var(--space-5); font-size: 0.875rem; color: var(--color-text-secondary); text-align: center;">
+          Licensed Phoenix toilet technicians descaling siphon jets and installing chloramine-resistant silicone seals.
+        </div>
+      </div>
+
+      <!-- Deep Dive: Common Toilet Failures in Phoenix -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">In-Depth Diagnostic: Resolving Chronic Phoenix Toilet Failures</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        When a Phoenix property owner calls with a malfunctioning toilet, the symptoms usually fall into five distinct mechanical categories. Understanding how each issue manifests ensures an accurate, long-lasting repair:
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">1. Siphon Jet Calcification & Incomplete Evacuation</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        In Phoenix, many homeowners assume a toilet that requires two or three flushes suffers from a blocked sewer pipe. In reality, the siphon jet hole located at the bottom of the bowl is frequently encrusted with rock-hard calcium carbonate. Because water cannot shoot across the trapway mouth with adequate velocity, the bowl merely swirls without pulling water over the trap crest. We use specialized non-corrosive descaling treatments and precision mechanical clearing tools to restore original factory flush velocity.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">2. Silent Tank Leaks & Phantom Water Cycling</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        A phantom flush occurs when water continuously slips past the flapper seal into the bowl. Every 15 to 45 minutes, the tank water level drops low enough to trigger the fill valve float, generating a brief hiss as the tank refills. In Phoenix, where City water rates climb into aggressive tiered brackets during the high-demand summer season, a silent flapper leak can inflate monthly utility charges by $150 or more. Our dye-testing protocol detects microscopic seepage instantly.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">3. Wax Seal Compression Failure & Floor Tile Seepage</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Standard toilet wax rings rely on a malleable petroleum wax formulation. In Phoenix bathrooms, radiant heat rising through concrete slabs softens the wax over time. If a homeowner or guest shifts their weight on a slightly loose fixture, the wax deforms permanently and cannot bounce back. Every flush pushes a thin film of wastewater under the toilet base. We solve this by upgrading older installations to reinforced urethane and closed-cell rubber gaskets that maintain continuous elastic memory regardless of temperature fluctuations.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">4. High Water Pressure Surges & Water Hammer</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Municipal water pressure across various Phoenix pressure zones can spike to 85 to 105 PSI, particularly during nighttime hours when citywide consumption drops. Excessive line pressure stresses toilet fill valve diaphragms, causing violent vibrations (water hammer) through wall cavities when the toilet shuts off. Our technicians test your static and dynamic incoming water pressure, adjust fill valve throttling, and ensure pressure-reducing valves (PRVs) protect your plumbing fixtures.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-8);">5. Broken Closet Flanges & Rocking Bowls</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        A rocking toilet is an urgent plumbing problem. The constant rocking motion exerts leverage against porcelain mounting holes, risking a sudden crack that floods the bathroom. We remove the toilet, evaluate the condition of the subfloor, install stainless steel flange repair rings secured with Tapcon masonry anchors into concrete slabs, and level the bowl with durable composite shims.
+      </p>
+
+      <!-- Seasonal Preventative Maintenance Tips -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Preventative Maintenance for Phoenix Homeowners</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Taking proactive steps can extend the operational life of your bathroom fixtures and protect your home from sudden water damage during the intense Arizona summer:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Inspect Angle Stop Shutoff Valves Annually:</strong> The oval shutoff valve behind your toilet often seizes due to calcium deposits. Gently turn the handle clockwise and counter-clockwise once every six months to keep the internal stem free of calcification.</li>
+          <li><strong>Check for Silent Flapper Leaks:</strong> Place three drops of dark food coloring or plumbing dye into the tank before bed. If color appears in the bowl without flushing the next morning, your flapper has warped and requires replacement before utility costs spike.</li>
+          <li><strong>Avoid In-Tank Drop-in Bleach Tablets:</strong> Concentrated chlorine tablets sit directly against rubber seals and brass tank bolts, accelerating chemical degradation and voiding manufacturer warranties.</li>
+          <li><strong>Check Closet Bolt Tightness:</strong> Periodically check that your toilet sits firmly flat on the floor. If slight rocking develops, contact our technicians to install shims and inspect the closet flange before the porcelain base cracks.</li>
+          <li><strong>Vacation Home & Snowbird Winter Precautions:</strong> If your Phoenix property remains unoccupied during seasonal months, water inside the toilet bowl trap can evaporate entirely in the desert heat, allowing toxic sewer gas (hydrogen sulfide) to enter living quarters. Pouring a cup of food-grade mineral oil into the bowl creates a non-evaporating barrier over the water seal.</li>
+        </ul>
+      </div>
+
+      <!-- Phoenix Neighborhood Case Studies -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Plumbing Realities Across Distinct Phoenix Neighborhoods</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Every geographic section of Phoenix was developed across different decades under evolving municipal plumbing codes. Our technicians carry equipment and replacement hardware matched to the specific vintage of your neighborhood:
+      </p>
+
+      <div style="display: grid; gap: var(--space-6); margin-bottom: var(--space-10);">
+        <div style="background: white; padding: var(--space-6); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-2);">Arcadia & Camelback East: High Water Pressure & Vintage Slab Transitions</h3>
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-3);">
+            Properties nestled near the base of Camelback Mountain often experience dynamic municipal pressure spikes exceeding 90 PSI due to gravity-assisted distribution downhill from city booster stations. High pressure combined with remodeled designer bathrooms featuring wall-hung or concealed-carrier toilets creates severe stress on supply fill valves. Furthermore, many Arcadia homes that expanded from 1950s citrus groves maintain original cast-iron drain stacks connected to modern low-consumption toilets, demanding precise hydraulic balancing to avoid recurring trap siphonage.
+          </p>
+          <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;"><strong>Common Solution:</strong> Inline pressure regulator adjustments, reinforced braided stainless steel supply lines, and commercial high-velocity flapper assemblies.</p>
+        </div>
+
+        <div style="background: white; padding: var(--space-6); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-2);">Encanto, Coronado & Historic Midtown: Cast Iron Flange Corrosion</h3>
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-3);">
+            In historic central Phoenix neighborhoods built between the 1920s and 1950s, closet flanges were poured using lead and oakum seals over thick cast-iron sewer collars directly into thick concrete slabs. After six to seven decades of exposure to moisture and volatile sewer vapors, the iron lip holding the closet bolts rusts through, leaving the toilet anchored by nothing more than brittle wax.
+          </p>
+          <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;"><strong>Common Solution:</strong> Precision sub-slab diamond-grinding, heavy-gauge stainless steel repair collars, and mechanical compression gasket retrofits without destroying surrounding historic tilework.</p>
+        </div>
+
+        <div style="background: white; padding: var(--space-6); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-2);">Ahwatukee Foothills: Mineral Encrustation & Second-Story Ceiling Protection</h3>
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-3);">
+            Because Ahwatukee is separated from the central Valley by South Mountain, its water supply route experiences significant mineral concentration, with TDS readings frequently topping 750 parts per million. In the multi-story homes common in Mountain Park Ranch and the Foothills Club, toilet wax ring degradation on upper floors quickly produces yellow water stains on ground-floor drywall ceilings.
+          </p>
+          <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;"><strong>Common Solution:</strong> Closed-cell elastomeric wax-free flange seals rated for multi-level deflection, paired with precision dual-flush diaphragm valve rebuilds.</p>
+        </div>
+
+        <div style="background: white; padding: var(--space-6); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-2);">Desert Ridge & North Phoenix: Expansive Clay & Post-Tension Slabs</h3>
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-3);">
+            North Phoenix developments feature expansive desert clay soils that swell during monsoon cloudbursts and shrink during dry summer heatwaves. Under post-tension foundation slabs, this subtle shifting exerts upward shearing tension on rigid ABS drain lines, cracking closet flange hubs flush with the concrete. Repairing these installations requires specialized diamond anchoring that avoids severing high-tension steel cables inside the slab.
+          </p>
+          <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;"><strong>Common Solution:</strong> Ultrasonic slab cable clearance verification, internal expandable PVC mechanical flanges, and flexible polyurethane perimeter caulking.</p>
+        </div>
+      </div>
+
+      <!-- Commercial Facilities & Office Restroom Solutions -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Commercial Toilet & Flushometer Repair in Phoenix</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Arizona Toilet Repair Co. delivers rapid response for Phoenix commercial properties, including high-traffic corporate offices along the Camelback Corridor, medical plazas in Midtown, retail storefronts, and restaurants across Downtown Phoenix. A non-functional commercial restroom compromises health compliance, drives away customers, and damages brand reputation.
+      </p>
+      <div style="background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-3);">Specialized Commercial Services:</h3>
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Flushometer Rebuilding & Diaphragm Replacements:</strong> Restoring Sloan Royal, Sloan Regal, and Zurn AquaVantage flush valves suffering from calcified bypass orifices, continuous running, or weak siphon flushes.</li>
+          <li><strong>Wall-Hung Commercial Bowl Carrier Stabilization:</strong> Tightening and rebuilding behind-the-wall concealed steel Zurn/Josam carriers when wall-hung porcelain toilets become loose or begin leaking through chase wall cavities.</li>
+          <li><strong>Electronic Sensor Troubleshooting:</strong> Replacing solenoid coils, infrared motion sensors, and waterproof battery packs on hands-free automatic flush assemblies across Phoenix enterprise buildings.</li>
+          <li><strong>Heavy-Duty Drain Clearing:</strong> Utilizing power cable augers to clear heavy commercial blockages caused by non-flushable wet wipes, sanitary items, and foreign objects without pulling fixtures off schedule.</li>
+          <li><strong>ADA Restroom Compliance Audits:</strong> Adjusting fixture height, flush handle placement on the wide side of stalls, and grab bar clearances to meet City of Phoenix commercial building accessibility codes.</li>
+        </ul>
+      </div>
+
+      <!-- Upfront Pricing Section -->
+      <div style="border: 2px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); background: white; margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.3rem;">Straightforward, Upfront Flat-Rate Pricing</h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+          We believe Phoenix homeowners deserve complete financial clarity before any repair begins. After evaluating your toilet fixture in person, our technician explains the exact diagnosis and hands you a firm, flat-rate quote in writing.
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: var(--color-text);">
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No surprise hourly charges or open-ended labor meters</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> No trip fees added after work is approved</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Written warranty coverage on all replacement valves and seals</li>
+        </ul>
+      </div>
+
+      <!-- Step-by-Step Service Process -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our 4-Step Repair Execution in Phoenix</h2>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 1: Rapid Arrival & Containment</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">Our van arrives stocked with commercial components. We immediately check supply shutoffs, protect your bathroom tile, and verify water containment.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 2: Root-Cause Mechanical Diagnostic</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We check incoming water pressure, inspect the closet flange ring, test internal tank seals with non-staining plumbing dye, and assess siphon jet flow.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 3: Commercial Component Installation</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We remove calcified valves, rebuild corroded tank-to-bowl hardware using solid brass bolts, or install heavy-duty wax-free urethane gaskets.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 4: Operational Flush Testing & Sanitization</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We run consecutive full-capacity flushes, verify tank refill height to the exact manufacturer specification, sanitize our work area, and provide written documentation.</p>
+        </div>
+      </div>
+
+      <!-- Real Neighborhoods & Zip Codes in Phoenix -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Areas Within Phoenix We Cover</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our service vans travel daily along State Route 51, the Loop 101 Pima Freeway, Interstate 17, and the Loop 202 South Mountain Freeway. We provide full residential and commercial coverage across all Phoenix neighborhoods including:
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-6);">
+        {neighborhoods.map((n) => (
+          <span style="background: var(--color-bg-alt); padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; color: var(--color-primary); border: 1px solid var(--color-border-light);">{n}</span>
+        ))}
+      </div>
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-8);">
+        Serving all Phoenix postal codes including {zipCodes.join(', ')} and surrounding Maricopa County communities.
+      </p>
+
+      <!-- Authority external link -->
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-10);">
+        Plumbing repairs adhere to standards regulated by the <a href="https://roc.az.gov/" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">Arizona Registrar of Contractors</a> and local municipal plumbing codes enforced by the <a href="https://www.phoenix.gov/pdd" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">City of Phoenix Planning & Development Department</a>.
+      </p>
+
+      <!-- Nearby Cities Links -->
+      <div style="background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-3);">Serving Communities Near Phoenix:</h3>
+        <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          In addition to Phoenix proper, our mobile plumbing units serve surrounding East and West Valley cities:
+        </p>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="/locations/scottsdale/" class="btn btn--outline btn--sm">Scottsdale Toilet Repair</a>
+          <a href="/locations/glendale/" class="btn btn--outline btn--sm">Glendale Toilet Repair</a>
+          <a href="/locations/tempe/" class="btn btn--outline btn--sm">Tempe Toilet Repair</a>
+          <a href="/locations/peoria/" class="btn btn--outline btn--sm">Peoria Toilet Repair</a>
+          <a href="/locations/" class="btn btn--outline btn--sm">View All 187 Cities &rarr;</a>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-6);">Frequently Asked Questions: Phoenix Toilet Repair</h2>
+      <div class="faq-list" style="margin-bottom: var(--space-10);">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Experiencing a Toilet Problem in Phoenix?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Call our local North Central Phoenix dispatch desk right now. A licensed technician can be at your door within the hour.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call Phoenix Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <!-- Contact & Location Map -->
+  <section class="section" style="padding: var(--space-16) 0; background: var(--color-bg);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-8); align-items: start;">
+        <div class="card" style="padding: var(--space-8); border-top: 4px solid var(--color-accent);">
+          <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-3);">Phoenix Local Dispatch Office</h3>
+          <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+            Our headquarters is located right here in Phoenix, facilitating immediate access to the Piestewa Freeway (SR-51) and Interstate 17 for rapid Valleywide response.
+          </p>
+          <p style="margin-bottom: var(--space-2);"><strong>Office Address:</strong> 9009 N 7th St #201, Phoenix, AZ 85020</p>
+          <p style="margin-bottom: var(--space-2);"><strong>Telephone:</strong> <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} style="color: var(--color-primary); font-weight: 700;">{phone}</a></p>
+          <p style="margin-bottom: var(--space-4);"><strong>Hours:</strong> Open 24 Hours / 7 Days a Week</p>
+          <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg" style="width: 100%; text-align: center;">
+            Call For Immediate Dispatch
+          </a>
+        </div>
+        <div class="card" style="padding: var(--space-4); overflow: hidden;">
+          <div style="width: 100%; height: 360px; border-radius: var(--radius-md); overflow: hidden;">
+            <iframe
+              title="Phoenix Headquarters Map"
+              width="100%"
+              height="100%"
+              style="border:0;"
+              loading="lazy"
+              allowfullscreen
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3325.2938883656345!2d-112.0674087!3d33.5683262!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b6dfd54109407%3A0xe7bc38c201e7dc70!2s9009%20N%207th%20St%20%23201%2C%20Phoenix%2C%20AZ%2085020!5e0!3m2!1sen!2sus!4v1700000000000"
+            ></iframe>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

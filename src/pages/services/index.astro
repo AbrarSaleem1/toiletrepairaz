@@ -1,0 +1,348 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+import { servicesList } from '../../data/cities';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const state = 'Arizona';
+
+const serviceDetailList = [
+  {
+    title: 'Clogged Toilet Unclogging',
+    slug: 'clogged-toilet-unclogging',
+    icon: '🚽',
+    summary: 'Heavy-duty mechanical augering and hydro-jet clearing for obstinate blockages, foreign objects, and main waste line obstructions without scratching porcelain.',
+    points: ['Rigid toilet augers up to 6 feet', 'Video camera waste line verification', 'Zero porcelain scuffing or bowl damage', 'Immediate clearing of main stack stoppages'],
+  },
+  {
+    title: 'Toilet Leak Repair',
+    slug: 'toilet-leak-repair',
+    icon: '💧',
+    summary: 'Precision leak detection and repair for weeping base seals, tank-to-bowl gasket failures, hairline porcelain fissures, and supply stop leaks.',
+    points: ['Reinforced wax-free and urethane seal upgrades', 'Stainless steel braided supply line replacements', 'Tank-to-bowl bolt rebuilds with brass hardware', 'Moisture mitigation to protect subflooring'],
+  },
+  {
+    title: 'Running Toilet Repair',
+    slug: 'running-toilet-repair',
+    icon: '🔄',
+    summary: 'Fast diagnosis and elimination of phantom flushing, continuous fill cycles, hissing ballcocks, and silent flapper leaks that skyrocket Arizona water bills.',
+    points: ['Siphon jet descaling and cleaning', 'Water bill spike investigation', 'Float adjustment to stop overflow tube leakage', 'Complete internal rebuild assemblies'],
+  },
+  {
+    title: 'Flapper & Fill Valve Replacement',
+    slug: 'flapper-fill-valve-replacement',
+    icon: '⚙️',
+    summary: 'Commercial-grade, chlorine-resistant silicone flappers and quiet, anti-siphon fill valves engineered to withstand desert mineral hardness.',
+    points: ['Chloramine-resistant silicone seals', 'Quiet-fill, high-pressure intake valves', 'Hard water sediment flushout', 'Precise tank water line calibration'],
+  },
+  {
+    title: 'Emergency Toilet Repair',
+    slug: 'emergency-toilet-repair',
+    icon: '🚨',
+    summary: '24/7 priority emergency response across Arizona for overflowing toilets, severe sewage backflow, and sudden shutoff valve failures.',
+    points: ['24-hour on-call licensed plumbers', 'Immediate water shutoff and containment', 'Sanitary cleanup and disinfection protocols', 'Same-day parts stocking on all service trucks'],
+  },
+  {
+    title: 'Toilet Flange Repair',
+    slug: 'flange-repair',
+    icon: '🔧',
+    summary: 'Structural flange reconstruction, broken cast-iron collar replacement, rotted subfloor reinforcement, and cracked PVC closet flange repair.',
+    points: ['Cast iron, ABS, and PVC flange solutions', 'Subfloor leveling and anchor bracket mounting', 'Wobble elimination and rocking bowl stability', 'Deep wax and neoprene seal re-bedding'],
+  },
+  {
+    title: 'Commercial Toilet Repair',
+    slug: 'commercial-toilet-repair',
+    icon: '🏢',
+    summary: 'Specialized commercial restroom services for offices, retail stores, restaurants, and medical facilities across Arizona.',
+    points: ['Sloan, Zurn, and Kohler Flushometer service', 'Sensor-activated hands-free valve calibration', 'ADA height and compliance retrofits', 'Multi-stall commercial drain clearance'],
+  },
+];
+
+const faqs = [
+  {
+    q: 'How fast can a technician arrive for an emergency toilet repair in Arizona?',
+    a: 'We operate 24 hours a day, 7 days a week. For critical emergencies like active overflows, sewage backups, or a single toilet home without working facilities, our mobile dispatch units arrive promptly across Arizona communities.',
+  },
+  {
+    q: 'Why do toilets in Arizona run constantly or wear out faster than in other states?',
+    a: 'Arizona municipal water contains significant dissolved mineral content — often 15 to 25+ grains of hardness per gallon. Calcium and magnesium crystallize on rubber flappers, stiffening the seal within 2 to 3 years. Furthermore, extreme summer heat accelerates the breakdown of synthetic rubber gaskets.',
+  },
+  {
+    q: 'Are your technicians licensed, bonded, and insured in Arizona?',
+    a: 'Yes. Arizona Toilet Repair Co. technicians are fully licensed through the Arizona Registrar of Contractors (ROC), bonded, and covered by comprehensive liability and worker compensation insurance.',
+  },
+  {
+    q: 'Do you charge upfront or provide flat-rate pricing?',
+    a: 'We provide clear, upfront flat-rate pricing before turning a single wrench. A licensed technician thoroughly evaluates your toilet fixture, determines the exact failure point, explains your options, and presents a transparent quote without hidden fees.',
+  },
+  {
+    q: 'Can you fix a wobbling toilet without breaking the tile floor?',
+    a: 'Yes. A rocking or wobbling toilet usually indicates a broken closet flange ring, loose closet bolts, or an uneven floor surface. We use specialized stainless steel repair rings and wobble shims to securely anchor the toilet to the concrete slab or wooden subfloor without damaging finished bathroom tiles.',
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: 'Comprehensive Toilet Repair Services in Arizona',
+      provider: {
+        '@type': 'PlumbingContractor',
+        name: businessName,
+        telephone: '+1-833-845-0906',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '9009 N 7th St #201',
+          addressLocality: 'Phoenix',
+          addressRegion: 'AZ',
+          postalCode: '85020',
+          addressCountry: 'US',
+        },
+      },
+      areaServed: {
+        '@type': 'State',
+        name: 'Arizona',
+      },
+      description: 'Professional, 24/7 statewide toilet repair, unclogging, leak stopping, flange restoration, and commercial flushometer services across Arizona.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: 'Home',
+          item: 'https://toiletrepairaz.us/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: 'Services',
+          item: 'https://toiletrepairaz.us/services/',
+        },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: {
+          '@type': 'Answer',
+          text: f.a,
+        },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Same Day Toilet Repair Services in Arizona | 24/7 Licensed Plumbers`}
+  description={`Explore professional toilet repair services across Arizona by ${businessName}. Clogged toilets, leaks, running valves, flange rebuilding, and 24/7 emergency dispatch. Call ${phone}.`}
+  canonical="https://toiletrepairaz.us/services/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <span class="current">Services</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section class="page-hero" style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; letter-spacing: 0.05em; display: inline-block; margin-bottom: var(--space-4);">
+            15+ Years Licensed Arizona Plumbing Specialists
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Toilet Repair Services Across Arizona
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            From stubborn deep-line clogs and phantom tank leaks to broken cast-iron flanges and commercial flushometers, Arizona Toilet Repair Co. delivers prompt, guaranteed solutions for residential and commercial bathrooms statewide.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call For Immediate Service: {phone}
+            </a>
+            <a href="/locations/" class="btn btn--white btn--lg">
+              Browse 187 Cities
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Statewide Dispatch</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt="Complete toilet repair and plumbing diagnostic services in Arizona - Arizona Toilet Repair Co."
+              title="Arizona Toilet Repair Services Directory"
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            24/7 Statewide Emergency Dispatch
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div style="padding: var(--space-2);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">ROC Licensed & Insured</strong>
+          <span style="color: var(--color-text-light); font-size: 0.875rem;">Verified Arizona Contractor</span>
+        </div>
+        <div style="padding: var(--space-2);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">24/7 Emergency Dispatch</strong>
+          <span style="color: var(--color-text-light); font-size: 0.875rem;">Rapid statewide response</span>
+        </div>
+        <div style="padding: var(--space-2);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Upfront Flat Pricing</strong>
+          <span style="color: var(--color-text-light); font-size: 0.875rem;">No surprises or hidden fees</span>
+        </div>
+        <div style="padding: var(--space-2);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years Experience</strong>
+          <span style="color: var(--color-text-light); font-size: 0.875rem;">Specialized toilet plumbing</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Services Grid -->
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container">
+      <div class="section-header text-center" style="max-width: 760px; margin: 0 auto var(--space-12);">
+        <span class="section-label">Our Service Catalog</span>
+        <h2>Comprehensive Toilet Repair Solutions</h2>
+        <p>
+          Toilet malfunctions in Arizona are uniquely exacerbated by hard desert water, intense heat, and high water pressures. Every service we perform is backed by premium components engineered for Arizona conditions.
+        </p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: var(--space-8);">
+        {serviceDetailList.map((service) => (
+          <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; border-top: 4px solid var(--color-accent); transition: transform 0.2s ease, box-shadow 0.2s ease;">
+            <div>
+              <div style="font-size: 2.5rem; margin-bottom: var(--space-3);">{service.icon}</div>
+              <h3 style="font-size: 1.4rem; color: var(--color-primary); margin-bottom: var(--space-3);"><a href={`/services/${service.slug}/`} style="color: inherit; text-decoration: none;">{service.title}</a></h3>
+              <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">{service.summary}</p>
+              <ul style="list-style: none; padding: 0; margin: 0 0 var(--space-6) 0;">
+                {service.points.map((pt) => (
+                  <li style="display: flex; align-items: center; gap: 8px; font-size: 0.9rem; color: var(--color-text); margin-bottom: 6px;">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+                    {pt}
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-4); display: flex; justify-content: space-between; align-items: center;">
+              <a href={`/services/${service.slug}/`} class="btn btn--outline" style="width: 100%; text-align: center;">
+                View {service.title} &rarr;
+              </a>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- 4-Step Process -->
+  <section class="section section--bg" style="padding: var(--space-16) 0;">
+    <div class="container">
+      <div class="section-header text-center" style="max-width: 700px; margin: 0 auto var(--space-12);">
+        <span class="section-label">Reliable Process</span>
+        <h2>How We Resolve Your Toilet Problem</h2>
+        <p>Simple, honest, and swift. No hassles, no delays, and total transparency from dispatch to testing.</p>
+      </div>
+
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--space-6);">
+        <div class="card text-center" style="padding: var(--space-6);">
+          <div style="width: 48px; height: 48px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; margin: 0 auto var(--space-4);">1</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-2);">Call 24/7 Dispatch</h3>
+          <p style="font-size: 0.95rem; color: var(--color-text-secondary);">Direct phone contact with our dispatch staff. We listen to the issue and immediately schedule a technician.</p>
+        </div>
+        <div class="card text-center" style="padding: var(--space-6);">
+          <div style="width: 48px; height: 48px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; margin: 0 auto var(--space-4);">2</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-2);">Thorough Inspection</h3>
+          <p style="font-size: 0.95rem; color: var(--color-text-secondary);">A licensed plumber diagnoses the root failure point — whether it is caliche scale, flange rot, or valve breakdown.</p>
+        </div>
+        <div class="card text-center" style="padding: var(--space-6);">
+          <div style="width: 48px; height: 48px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; margin: 0 auto var(--space-4);">3</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-2);">Upfront Flat Price</h3>
+          <p style="font-size: 0.95rem; color: var(--color-text-secondary);">You receive the exact repair price in writing before any wrench is turned. No open-ended hourly billing.</p>
+        </div>
+        <div class="card text-center" style="padding: var(--space-6);">
+          <div style="width: 48px; height: 48px; background: var(--color-primary); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 800; font-size: 1.25rem; margin: 0 auto var(--space-4);">4</div>
+          <h3 style="font-size: 1.2rem; margin-bottom: var(--space-2);">Fix, Test & Clean</h3>
+          <p style="font-size: 0.95rem; color: var(--color-text-secondary);">We complete the repair using commercial parts, run multi-cycle pressure flushes, sanitize the workspace, and provide warranty paperwork.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container container--narrow">
+      <div class="section-header text-center" style="margin-bottom: var(--space-10);">
+        <span class="section-label">Answers You Need</span>
+        <h2>Frequently Asked Questions About Arizona Toilet Repairs</h2>
+      </div>
+
+      <div class="faq-list">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band (No form, purely click-to-call) -->
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Immediate Toilet Problem in Arizona?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Don't let a running, leaking, or overflowing toilet cause expensive water bills or subfloor rot. Call our licensed dispatch team right now.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone" style="display: inline-flex; align-items: center; gap: 8px;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        Call 24/7 Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

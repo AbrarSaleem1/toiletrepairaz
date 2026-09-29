@@ -1,0 +1,103 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const address = '9009 N 7th St #201, Phoenix, AZ 85020, USA';
+const email = 'dispatch@toiletrepairaz.us';
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: `Privacy Policy | ${businessName}`,
+      description: `Privacy policy and consumer data protection details for ${businessName}.`,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Privacy Policy', item: 'https://toiletrepairaz.us/privacy-policy/' },
+      ],
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Privacy Policy | ${businessName}`}
+  description={`Privacy Policy for ${businessName}. We value your privacy and explain how consumer information is handled for toilet repair dispatches in Arizona.`}
+  canonical="https://toiletrepairaz.us/privacy-policy/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <span class="current">Privacy Policy</span>
+      </nav>
+    </div>
+  </div>
+
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-12) 0;">
+    <div class="container text-center" style="max-width: 800px; margin: 0 auto;">
+      <h1 style="color: var(--color-white); font-size: clamp(2rem, 3.5vw, 2.75rem); line-height: 1.2; margin-bottom: var(--space-3);">
+        Privacy Policy
+      </h1>
+      <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9);">
+        Last updated: October 2026. Your privacy and security are paramount to Arizona Toilet Repair Co.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 850px; margin: 0 auto; line-height: 1.8; color: var(--color-text-secondary);">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">1. Information We Collect</h2>
+      <p style="margin-bottom: var(--space-6);">
+        When you contact Arizona Toilet Repair Co. via telephone or direct communication, we may collect minimal necessary personal information including your name, physical service address, telephone number, and details regarding your toilet plumbing issue. This information is collected solely to schedule and dispatch licensed plumbing technicians to your Arizona property.
+      </p>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">2. How We Use Collected Information</h2>
+      <p style="margin-bottom: var(--space-3);">The information we collect is utilized strictly for:</p>
+      <ul style="margin-left: var(--space-6); margin-bottom: var(--space-6);">
+        <li>Dispatching technicians to your residential or commercial location.</li>
+        <li>Communicating technician arrival estimates and diagnostic assessments.</li>
+        <li>Generating accurate invoices and providing written repair warranties.</li>
+        <li>Complying with municipal and state plumbing regulatory standards in Arizona.</li>
+      </ul>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">3. No Sale of Personal Information</h2>
+      <p style="margin-bottom: var(--space-6);">
+        We do not sell, rent, trade, or distribute your personal details, telephone numbers, or physical addresses to third-party advertisers or telemarketing companies. Any customer details gathered are used strictly to provide you with prompt plumbing service.
+      </p>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">4. Data Protection & Security</h2>
+      <p style="margin-bottom: var(--space-6);">
+        We maintain reasonable physical, electronic, and procedural safeguards to secure customer information against unauthorized access, loss, or alteration. All electronic records are stored on encrypted, access-restricted servers.
+      </p>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">5. Contacting Us Regarding Your Data</h2>
+      <p style="margin-bottom: var(--space-6);">
+        If you have questions regarding our privacy practices or wish to update or remove your contact information from our internal dispatch records, please contact us at:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <strong style="color: var(--color-primary); display: block; font-size: 1.1rem; margin-bottom: 4px;">{businessName}</strong>
+        <p style="margin: 0; color: var(--color-text-secondary);">{address}</p>
+        <p style="margin: 0; color: var(--color-text-secondary);">Direct Dispatch: <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} style="color: var(--color-primary); font-weight: 600;">{phone}</a></p>
+        <p style="margin: 0; color: var(--color-text-secondary);">Email: {email}</p>
+      </div>
+
+      <div class="text-center" style="margin-top: var(--space-10);">
+        <a href="/" class="btn btn--primary">Return to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

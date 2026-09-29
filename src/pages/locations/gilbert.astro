@@ -1,0 +1,432 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const city = 'Gilbert';
+const state = 'AZ';
+const zipCodes = ['85233', '85234', '85295', '85296', '85297', '85298', '85299'];
+const neighborhoods = ['Agritopia', 'Morrison Ranch', 'Power Ranch', 'Val Vista Lakes', 'Seville Golf & Country Club', 'Cooley Station', 'Higley Groves', 'The Islands', 'Stonebridge Lakes', 'Coronado Ranch'];
+
+const faqs = [
+  {
+    q: 'How fast can an emergency toilet plumber reach my home in Gilbert?',
+    a: 'Our East Valley service vans are dispatched directly through the Santan Freeway (Loop 202) corridor and Gilbert Road. For Gilbert residents in Power Ranch, Val Vista Lakes, or Agritopia, our average arrival time is between 45 and 60 minutes for urgent toilet overflows or sudden valve failures.',
+  },
+  {
+    q: 'Why do master-planned homes in Gilbert experience frequent toilet clogs?',
+    a: 'Many homes in Gilbert feature modern high-efficiency 1.28 GPF gravity-fed toilets. In bustling family households with high daily usage, children and guests frequently flush wipes, thick tissue, or hygiene products that low-flow water volumes cannot carry down lengthy horizontal waste runs, causing stubborn branch line blockages.',
+  },
+  {
+    q: 'Can living near man-made lake communities in Gilbert (like Val Vista Lakes or The Islands) affect my toilet plumbing?',
+    a: 'Yes. Properties adjacent to man-made lakes experience localized subsurface soil moisture variations that cause slight shifting in concrete slab foundations. This micro-movement can shear closet bolts or compress wax seals unevenly, resulting in rocking toilets and hidden sewer gas odors.',
+  },
+  {
+    q: 'How does Gilbert municipal water hardness affect toilet fill valves?',
+    a: 'Gilbert water draws from the Salt River Project and Central Arizona Project, with water hardness typically ranging from 14 to 22 grains per gallon. Dissolved calcium and magnesium crystallize on fill valve diaphragms and flapper hinges, leading to whistling sounds and persistent phantom flushing.',
+  },
+  {
+    q: 'Do you charge upfront flat rates with written quotes in Gilbert?',
+    a: 'Yes. We inspect your fixture thoroughly, diagnose the exact mechanical failure, and provide a comprehensive upfront flat-rate price in writing before starting work. You never pay unexpected hourly surcharges or surprise trip fees.',
+  },
+  {
+    q: 'How do you handle heavy waste clogs caused by flushable wipes in Gilbert?',
+    a: 'Despite marketing claims, "flushable" wipes do not break down in water like toilet paper. They snag on rough pipe joints or tree roots in 3-inch and 4-inch sewer laterals. We deploy motorized drop-head augers that physically hook and extract wipe mass without cracking fragile porcelain.',
+  },
+  {
+    q: 'Can you service commercial restrooms for restaurants in the Gilbert Heritage District?',
+    a: 'Yes. We provide 24/7 commercial plumbing response for dining establishments and retail shops throughout the Downtown Gilbert Heritage District and SanTan Village, including Sloan flushometer rebuilds, high-traffic stall clearing, and ADA compliance upgrades.',
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'PlumbingContractor',
+      name: `${businessName} - ${city}`,
+      telephone: '+1-833-845-0906',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '9009 N 7th St #201',
+        addressLocality: 'Phoenix',
+        addressRegion: 'AZ',
+        postalCode: '85020',
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '33.3528',
+        longitude: '-111.7890',
+      },
+      areaServed: {
+        '@type': 'City',
+        name: 'Gilbert',
+        sameAs: 'https://en.wikipedia.org/wiki/Gilbert,_Arizona',
+      },
+      description: 'Professional 24/7 toilet repair, clog clearing, flange rebuilding, and leak stopping in Gilbert, Arizona.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://toiletrepairaz.us/locations/' },
+        { '@type': 'ListItem', position: 3, name: `${city}, AZ`, item: `https://toiletrepairaz.us/locations/gilbert/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Toilet Repair in Gilbert, AZ | Same Day Toilet Repair`}
+  description={`Need toilet repair in Gilbert? Arizona Toilet Repair Co. provides 24/7 same day toilet repair, clog clearing, leak fixes, and flange rebuilds across Gilbert, AZ. Call ${phone}.`}
+  canonical="https://toiletrepairaz.us/locations/gilbert/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="/locations/">Locations</a>
+        <span class="separator">/</span>
+        <span class="current">Gilbert</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            Gilbert Town Priority Dispatch • Gilbert, AZ
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Toilet Repair in Gilbert, AZ
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            From legacy ranch estates in the Heritage District to modern multi-story homes across Seville and Power Ranch, Gilbert households depend on precision toilet plumbing. Arizona Toilet Repair Co. delivers rapid, certified diagnostics and lasting repairs 24/7.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Gilbert Dispatch: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Rapid Response</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt="Same day toilet repair and fixture diagnostic in Gilbert, AZ - Arizona Toilet Repair Co."
+              title="Gilbert AZ Toilet Repair Service"
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            24/7 Gilbert Emergency Dispatch
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">ROC Licensed & Insured</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Verified Arizona contractor</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Fast East Valley Arrival</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Serving Loop 202 & Gilbert Rd</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Upfront Flat Pricing</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Zero hidden fees or surprises</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years Experience</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Specialized toilet plumbing</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Dedicated Toilet Repair for Gilbert Neighborhoods</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        From the historic charm of the Gilbert Heritage District to the master-planned lake communities of Val Vista Lakes and The Islands, homes in Gilbert feature spacious bathrooms with modern plumbing fixtures. However, because modern homes are engineered to meet strict low-flow water conservation standards, toilets depend heavily on precise hydrodynamic velocity.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        When hard water calcifies the bottom jet hole or warps internal tank flappers, water velocity drops below the threshold needed to carry waste down long horizontal subfloor runs. Our technicians bring specialized descaling equipment, heavy-duty drop-head augers, and commercial silicone valve kits to restore full flush performance.
+      </p>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
+        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Gilbert Toilet Repair Services:</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Obstinate Clog Clearing</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Drop-head mechanical augers that extract thick paper, wipes, and foreign objects without marking polished porcelain bowls.</p>
+            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Unclogging Solutions &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flapper-fill-valve-replacement/" style="color: inherit; text-decoration: none;">Flapper & Valve Replacement</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Upgrade to commercial-grade silicone flappers and quiet anti-siphon fill valves that resist Gilbert's high mineral tap water.</p>
+            <a href="/services/flapper-fill-valve-replacement/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Valve Replacements &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Base Seal & Tank Leak Fixes</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Replace degraded wax rings with heavy-duty urethane gaskets and rebuild corroded tank-to-bowl brass bolts.</p>
+            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Leak Procedures &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Closet Flange Reconstruction</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Anchor wobbling toilet bowls rock-solid into concrete slabs and repair cracked PVC closet collars.</p>
+            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Flange Services &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Water Hardness Realities in Gilbert, Arizona</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        The Town of Gilbert treats water via the Santan Vista and North Water Treatment Plants, blending water from the Salt River Project and Central Arizona Project aqueduct. Typical mineral hardness ranges between 14 and 22 grains per gallon. When combined with intense summer bathroom temperatures, rubber flappers rapidly blister, dissolve into black residue, and break seal.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        This causes insidious phantom flushing where the toilet tank intermittently refills every few minutes, wasting hundreds of gallons each week and significantly increasing Gilbert municipal utility bills. We replace these vulnerable components with chloramine-resistant red silicone assemblies backed by comprehensive warranties.
+      </p>
+
+      <!-- Gilbert Growth Eras and Master-Planned Foundations -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Gilbert Housing Eras & Subfloor Structural Challenges</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Gilbert transformed over three decades from an agricultural community into an expansive residential town. Construction eras across Gilbert present distinct structural plumbing profiles:
+      </p>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-8);">
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Historic Heritage District & Pioneer Parcels (Pre-1980s):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Older homes around Gilbert and Page Roads feature cast-iron and early galvanized sewer piping embedded in slab foundations. Long-term exposure to acidic waste gases corrodes closet flanges from the underside, causing mounting bolts to pull loose and toilets to rock.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Master-Planned Lake Era (1980s - 1990s):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Neighborhoods like The Islands and Val Vista Lakes were constructed around artificial water features. Fluctuating subsurface moisture creates micro-settling beneath concrete slabs. As foundations settle, rigid PVC closet flanges crack, and traditional wax rings break seal, causing insidious base leaks.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Modern Master Communities (Power Ranch, Morrison Ranch, Seville, 2000s+):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Modern high-density family homes feature separate water closet rooms and low-flow 1.28 GPF fixtures. In busy multi-child homes, high daily flush cycles combined with heavy paper usage and flushable wipes frequently overwhelm long horizontal branch runs, requiring deep motorized auger clearing.</p>
+        </div>
+      </div>
+
+      <div style="margin: var(--space-8) 0; text-align: center;">
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid var(--color-border-light); max-width: 720px; margin: 0 auto;">
+          <img
+            src="/images/toilet-wax-ring-leak-repair.jpg"
+            alt="Replacing degraded toilet wax ring seal and inspecting closet flange in Gilbert, AZ home"
+            title="Toilet Wax Ring Leak Repair - Gilbert, AZ"
+            width="720"
+            height="480"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: auto; display: block; object-fit: cover;"
+          />
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: var(--space-2); font-style: italic;">
+          Professional inspection and replacement of a failed wax seal and closet flange in a Gilbert residence.
+        </p>
+      </div>
+
+      <!-- Deep Dive on 5 Common Failures in Gilbert -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Diagnostic Guide: Solving Common Gilbert Toilet Malfunctions</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our technicians resolve five recurring mechanical failure modes in Gilbert homes:
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">1. Recurring Clogs from Flushable Wipes in High-Usage Family Homes</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        In Gilbert's family neighborhoods, flushable wipes are a leading cause of severe toilet stoppages. Unlike toilet paper, non-woven synthetic wipes do not disintegrate in water. In low-flow 1.28 GPF toilets, wipes catch on interior trapway ridges or horizontal subfloor pipe seams, creating dense blockages that standard plungers cannot dislodge. We use professional drop-head closet augers that retrieve the wipe mass cleanly.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">2. Phantom Flushing and Continuous Tank Cycling</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        When a toilet in Gilbert refills itself every 15 to 30 minutes, water is slowly leaking past the flapper seal into the bowl. This problem is exacerbated by Gilbert's high municipal chloramine levels, which oxidize standard rubber flappers into a soft, misshapen seal. We install chemical-resistant silicone flappers and precision-molded valve seats that resist chlorine and mineral scale.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">3. Siphon Jet Calcification & Sluggish Bowl Swirl</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Town of Gilbert municipal water carries heavy dissolved calcium. Over time, calcium carbonate deposits narrow the small siphon jet orifice at the base of the toilet bowl. With restricted water entry, the toilet loses its dynamic vacuum draw, leaving toilet paper floating after a flush. We mechanically descale the siphon jet and clear rim ports to restore original flush power.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">4. Lake Community Slab Movement & Wax Ring Compression Failure</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        In lake communities like The Islands and Val Vista Lakes, moisture fluctuations in the surrounding soil cause subtle subfloor foundation movement. Traditional petroleum wax rings deform under this movement and cannot spring back into position. Wastewater seeps beneath bathroom tiles, loosening grout and generating musty odors. We replace failed wax with resilient urethane seals that flex with the slab.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-8);">5. Broken Closet Flanges and Rocking Bowls</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        When closet bolts pull through cracked PVC flange collars, the toilet bowl wobbles whenever someone sits down. Left unaddressed, this leverages against the porcelain base, risking a catastrophic bowl fracture. We install heavy-gauge stainless steel repair rings anchored directly into the concrete slab with masonry fasteners, ensuring a rigid, lifetime connection.
+      </p>
+
+      <!-- Preventative Maintenance for Gilbert Homeowners -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Preventative Maintenance for Gilbert Family Households</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Follow these practical maintenance practices to keep your Gilbert home's toilets functioning smoothly:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Establish a "No Wipes" Policy:</strong> Even packaging labeled "septic safe" or "flushable" causes blockages in low-flow plumbing lines. Keep waste receptacles in family and guest bathrooms for all wipes and hygiene products.</li>
+          <li><strong>Test Angle Stop Shutoff Valves Twice Annually:</strong> Mineral scale in Gilbert water can freeze the shutoff valve stem behind the toilet. Turn the handle clockwise and counter-clockwise every six months to maintain smooth mechanical operation.</li>
+          <li><strong>Avoid Corrosive Chemical In-Tank Drop-Ins:</strong> Blue or bleach chlorine tablets degrade internal rubber seals, warp flappers, and corrode brass bolts within months, causing premature leaks.</li>
+          <li><strong>Perform an Overnight Tank Dye Test:</strong> Place three drops of dark food coloring in the tank before bed without flushing. If color seeps into the bowl by morning, your flapper is leaking and wasting water.</li>
+        </ul>
+      </div>
+
+      <!-- Commercial Restroom Solutions in Gilbert -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Commercial Restroom Services in Gilbert, AZ</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Beyond residential neighborhoods, we service commercial restrooms for dining spots in the Gilbert Heritage District, retail facilities at SanTan Village, and medical offices along Mercy Road:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Sloan & Zurn Flushometer Rebuilds:</strong> Restore high-volume commercial flush valves with factory diaphragm kits to stop running valves and eliminate water waste.</li>
+          <li><strong>High-Traffic Restroom Stoppage Clearing:</strong> Rapid mechanical augering through cleanouts to clear multi-stall waste stacks during peak dining or shopping hours.</li>
+          <li><strong>ADA Accessibility Compliance:</strong> Ensure commercial toilets meet height specifications (17 to 19 inches) and compliant flush lever positioning.</li>
+        </ul>
+      </div>
+
+      <!-- Gilbert Neighborhood Case Studies -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Plumbing Realities Across Distinct Gilbert Neighborhoods</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        The Town of Gilbert underwent rapid suburban expansion over the past three decades, transforming from agricultural farming acreage into premier master-planned subdivisions. Each pocket of the town presents distinct plumbing infrastructure considerations:
+      </p>
+
+      <div style="display: grid; gap: var(--space-6); margin-bottom: var(--space-10);">
+        <div style="background: white; padding: var(--space-6); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-2);">Morrison Ranch & Power Ranch: Multi-Bathroom Low-Flow Pressure Balances</h3>
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-3);">
+            Homes in Morrison Ranch and Power Ranch feature large square footage with four or five bathrooms connected to 1.28 GPF high-efficiency toilets. During morning routines when multiple showers, dishwashers, and toilets operate simultaneously, dynamic water pressure drops can cause fill valves to shudder or take upwards of four minutes to refill. Furthermore, builder-grade fill valves installed during mid-2000s construction are reaching their mechanical end-of-life across these developments.
+          </p>
+          <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;"><strong>Common Solution:</strong> Installing high-recovery Fluidmaster Pro45B commercial fill valves, checking thermal expansion tanks on water heaters, and re-calibrating bowl water levels.</p>
+        </div>
+
+        <div style="background: white; padding: var(--space-6); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-2);">The Islands & Val Vista Lakes: Water-Table Fluctuations & Slab Settling</h3>
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-3);">
+            Gilbert's renowned man-made lake communities feature subsoils that experience moisture differentials between waterfront property lines and interior street foundations. Over twenty to thirty years, concrete slabs settle microscopically. This settling puts shear forces on ABS drain pipes where they penetrate the slab, often snapping closet flange collars or cracking the wax seal ring without visible exterior signs until water seeps under baseboards.
+          </p>
+          <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;"><strong>Common Solution:</strong> Pulling the fixture, securing heavy-duty stainless steel split rings into the concrete with masonry anchors, and resetting the bowl with zero-compression elastomeric seals.</p>
+        </div>
+
+        <div style="background: white; padding: var(--space-6); border: 1px solid var(--color-border-light); border-radius: var(--radius-md);">
+          <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-2);">Agritopia & Higley Groves: Agricultural Soil Drainage & Root Infiltration</h3>
+          <p style="font-size: 1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-3);">
+            Constructed over fertile historical farmland, properties in Agritopia and Higley feature rich organic topsoil layered over dense desert caliche. Lush neighborhood landscaping and tree-lined parkways encourage aggressive ficus, citrus, and mesquite roots to seek moisture from sewer lateral pipe joints. Toilets that gurgle or back up when a washing machine discharges are often reporting a restricted main branch line rather than a simple bowl clog.
+          </p>
+          <p style="font-size: 0.95rem; color: var(--color-text-light); margin: 0;"><strong>Common Solution:</strong> High-definition sewer camera diagnostic to verify line integrity, power mechanical root cutting through exterior cleanouts, and precision bowl resetting.</p>
+        </div>
+      </div>
+
+      <div style="border: 2px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); background: white; margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.3rem;">Transparent Flat-Rate Pricing in Gilbert</h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+          We give you an upfront flat quote before any repair begins. What you see is what you pay.
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: var(--color-text);">
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Accurate diagnostics with transparent repair options</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fixed flat rate approved by you before wrench touches pipe</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Solid warranty coverage on all replacement valves, flanges, and seals</li>
+        </ul>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our 4-Step Gilbert Repair Execution</h2>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 1: Rapid Response & Area Protection</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">Our van arrives stocked with commercial components. We immediately check supply shutoffs, protect your bathroom tile, and verify water containment.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 2: Root-Cause Mechanical Diagnostic</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We test water pressure, check closet flange stability, measure siphon jet clearance, and perform plumbing dye testing on tank seals.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 3: Commercial Component Installation</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We remove calcified valves, rebuild corroded tank-to-bowl hardware using solid brass bolts, or install heavy-duty wax-free urethane gaskets.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 4: Operational Flush Testing & Sanitization</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We run consecutive full-capacity flushes, verify tank refill height to the exact manufacturer specification, sanitize our work area, and provide written documentation.</p>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Gilbert Neighborhoods We Serve Daily</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our service vans travel regularly along the Santan Freeway (Loop 202), Gilbert Road, Val Vista Drive, and Higley Road, serving communities including:
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-6);">
+        {neighborhoods.map((n) => (
+          <span style="background: var(--color-bg-alt); padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; color: var(--color-primary); border: 1px solid var(--color-border-light);">{n}</span>
+        ))}
+      </div>
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-8);">
+        Serving all Gilbert postal codes including {zipCodes.join(', ')}.
+      </p>
+
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-10);">
+        Contractor credentials verified via the <a href="https://roc.az.gov/" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">Arizona Registrar of Contractors</a>, adhering to local building codes regulated by the <a href="https://www.gilbertaz.gov/departments/development-services/building-safety" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">Town of Gilbert Building Safety Division</a>.
+      </p>
+
+      <div style="background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-3);">Serving Neighboring East Valley Cities:</h3>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="/locations/chandler/" class="btn btn--outline btn--sm">Chandler Toilet Repair</a>
+          <a href="/locations/mesa/" class="btn btn--outline btn--sm">Mesa Toilet Repair</a>
+          <a href="/locations/queen-creek/" class="btn btn--outline btn--sm">Queen Creek Toilet Repair</a>
+          <a href="/locations/san-tan-valley/" class="btn btn--outline btn--sm">San Tan Valley Toilet Repair</a>
+          <a href="/locations/" class="btn btn--outline btn--sm">View All 187 Cities &rarr;</a>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-6);">Frequently Asked Questions: Gilbert Toilet Repair</h2>
+      <div class="faq-list" style="margin-bottom: var(--space-10);">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Need Fast Toilet Repair in Gilbert?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Call our East Valley dispatch desk right now. A licensed plumber can be at your Gilbert home promptly.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call Gilbert Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

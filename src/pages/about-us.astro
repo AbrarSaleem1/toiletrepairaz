@@ -1,0 +1,169 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const address = '9009 N 7th St #201, Phoenix, AZ 85020, USA';
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'AboutPage',
+      name: `About ${businessName}`,
+      description: 'Learn about Arizona Toilet Repair Co., our 15+ years of dedicated plumbing experience, licensing credentials, and statewide service across Arizona.',
+      mainEntity: {
+        '@type': 'PlumbingContractor',
+        name: businessName,
+        telephone: '+1-833-845-0906',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '9009 N 7th St #201',
+          addressLocality: 'Phoenix',
+          addressRegion: 'AZ',
+          postalCode: '85020',
+          addressCountry: 'US',
+        },
+      },
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'About Us', item: 'https://toiletrepairaz.us/about-us/' },
+      ],
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`About Us | 15+ Years Licensed Plumbing in Arizona`}
+  description={`Learn about Arizona Toilet Repair Co. With 15+ years of licensed plumbing experience, we provide trusted 24/7 toilet repair across Arizona. Call ${phone}.`}
+  canonical="https://toiletrepairaz.us/about-us/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <span class="current">About Us</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            Serving Arizona Homeowners & Businesses Since 2009
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            About Arizona Toilet Repair Co.
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            With more than 15 years of dedicated master plumbing experience, we specialize exclusively in the diagnosis, restoration, and rebuilding of residential and commercial toilet systems across the Grand Canyon State.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call 24/7 Dispatch: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Statewide Dispatch</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt="Experienced licensed plumbing technicians specializing in toilet repair in Arizona"
+              title="About Arizona Toilet Repair Co."
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            24/7 Statewide Emergency Dispatch
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Trust Strip -->
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years in AZ</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Established local company</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">ROC Licensed & Insured</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Comprehensive state credentialing</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">187 Cities Covered</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Full Arizona footprint</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">24/7 Live Dispatch</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Always open for emergencies</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 860px; margin: 0 auto;">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our Story: Built on Honest Work & Specialized Skill</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Arizona Toilet Repair Co. was founded over 15 years ago with a single mission: to provide straightforward, highly specialized plumbing expertise focused on toilets. Too often, homeowners call large general plumbing corporations and face junior apprentices who suggest complete, unnecessary bathroom overhauls for a simple broken flange or calcified flush valve.
+      </p>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        We recognized early on that Arizona's climate and water chemistry require a distinct approach. Dissolved minerals from the Colorado and Salt Rivers attack rubber seals within 24 to 36 months, high municipal water pressure stresses internal fill diaphragms, and expansive desert clay soils shift foundation slabs and snap rigid closet flanges. By specializing in toilet systems, we carry the exact commercial-grade parts and diagnostic tools required to solve the problem properly on the very first visit.
+      </p>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin: var(--space-10) 0;">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.4rem;">The Principles We Operate By:</h3>
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Honest Upfront Flat Pricing:</strong> You are provided with a complete, transparent quote before any repair begins. No surprise hourly charges, no trip fees added after the fact.</li>
+          <li><strong>Desert-Grade Components:</strong> We never install cheap generic rubber parts that degrade in Arizona water. We use commercial silicone flappers, brass bolts, and anti-siphon valve assemblies.</li>
+          <li><strong>Cleanliness & Respect:</strong> Our technicians wear shoe covers, protect your bathroom flooring, sanitize the fixture, and leave the workspace cleaner than we found it.</li>
+          <li><strong>Statewide Availability:</strong> Every resident across our 187 served cities receives the same prompt, professional standard of care whether located in central Phoenix or rural Arizona.</li>
+        </ul>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Licensing, Credentials & Accountability</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Plumbing repairs involve pressurized potable water lines and sanitary drain waste systems. Unlicensed handymen frequently cause catastrophic sewage leaks or compromise drinking water safety. Arizona Toilet Repair Co. holds active, verified contracting licenses under the <a href="https://roc.az.gov/" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">Arizona Registrar of Contractors (ROC)</a>, backed by comprehensive commercial general liability insurance and bonded protection for your peace of mind.
+      </p>
+
+      <!-- Head Office Block -->
+      <div style="border: 2px solid var(--color-border); border-radius: var(--radius-md); padding: var(--space-6); background: white; margin-top: var(--space-8);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-2);">Main Headquarters & Dispatch Facility</h3>
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-2);"><strong>Headquarters:</strong> {address}</p>
+        <p style="color: var(--color-text-secondary); margin-bottom: var(--space-2);"><strong>Phone:</strong> {phone}</p>
+        <p style="color: var(--color-text-secondary); margin-bottom: 0;"><strong>Operating Hours:</strong> 24 Hours a Day, 7 Days a Week, 365 Days a Year</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA Band -->
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Work With Arizona's Dedicated Toilet Specialists</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Experience the difference 15+ years of specialized craftsmanship makes. Call us 24/7 for immediate dispatch anywhere in Arizona.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call 24/7 Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

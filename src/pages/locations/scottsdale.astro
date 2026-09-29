@@ -1,0 +1,402 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const city = 'Scottsdale';
+const state = 'AZ';
+const zipCodes = ['85250', '85251', '85254', '85255', '85257', '85258', '85259', '85260', '85262', '85266'];
+const neighborhoods = ['DC Ranch', 'Silverleaf', 'Troon North', 'McCormick Ranch', 'Gainey Ranch', 'Old Town Scottsdale', 'McDowell Mountain Ranch', 'Grayhawk', 'Kierland Area', 'Pinnacle Peak'];
+
+const faqs = [
+  {
+    q: 'Can your technicians repair luxury and smart toilets like Toto Neorest or Kohler Veil in Scottsdale?',
+    a: 'Yes. Our senior technicians possess specialized diagnostic training for high-end electronic bidet fixtures, integrated wall-hung carrier systems, and smart toilets like Toto Neorest, Kohler Numi/Veil, and Duravit Sensowash. We carry certified factory actuators, solenoid valves, and specialized mounting hardware on our mobile units.',
+  },
+  {
+    q: 'How do you service in-wall concealed cisterns (such as Geberit) without opening drywall?',
+    a: 'Concealed in-wall toilet tanks are engineered to be serviced directly through the flush actuator plate on the wall. We remove the decorative faceplate to access the internal fill valve, flush diaphragm, and pneumatic linkages, completing full rebuilds without cutting into custom Venetian plaster, marble, or designer bathroom tiles.',
+  },
+  {
+    q: 'How quickly can an emergency plumber arrive at my North Scottsdale or DC Ranch home?',
+    a: 'We position mobile service vans along the Loop 101 Pima Freeway corridor. For North Scottsdale communities including DC Ranch, Troon, and Silverleaf, our typical emergency response window is between 45 and 60 minutes for active overflows, leak mitigation, and urgent toilet outages.',
+  },
+  {
+    q: 'Does Scottsdale municipal water cause scale buildup in luxury dual-flush valves?',
+    a: 'Yes. City of Scottsdale tap water carries 14 to 22 grains of dissolved mineral hardness per gallon. Calcium carbonate coats the silicone O-rings and micro-ports of European dual-flush discharge cartridges, causing subtle, continuous seepage that requires specialized ultrasonic descaling or factory cartridge replacement.',
+  },
+  {
+    q: 'Do you charge upfront flat rates for plumbing repairs in Scottsdale?',
+    a: 'Yes. We provide complete pricing transparency. After examining your fixture, we give you a comprehensive, upfront flat-rate quote in writing before any tool touches your toilet. There are no open-ended hourly fees or unexpected surprise charges.',
+  },
+  {
+    q: 'What should seasonal residents (snowbirds) in Scottsdale do to protect toilets during summer vacancy?',
+    a: 'When homes remain vacant in summer, bathroom ambient temperatures dry out water in the toilet bowl and trapway within 4 to 6 weeks. Once the water barrier evaporates, toxic sewer gas enters the home and rubber flappers dry rot. We recommend leaving conditioned airflow or applying non-toxic marine plumbing antifreeze/vapor seals before seasonal departure.',
+  },
+  {
+    q: 'Can you fix a wall-hung toilet that flexes or feels loose when sat upon in Scottsdale?',
+    a: 'Yes. Wall-hung toilets rely on an internal steel carrier frame bolted to the wall studs and floor slab. If mounting studs or lock nuts loosen, the bowl will flex, pinching the concealed drain seal and leaking inside the wall. We re-torque carrier studs and replace wall-gaskets to restore rigid stability.',
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'PlumbingContractor',
+      name: `${businessName} - ${city}`,
+      telephone: '+1-833-845-0906',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '9009 N 7th St #201',
+        addressLocality: 'Phoenix',
+        addressRegion: 'AZ',
+        postalCode: '85020',
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '33.4942',
+        longitude: '-111.9261',
+      },
+      areaServed: {
+        '@type': 'City',
+        name: 'Scottsdale',
+        sameAs: 'https://en.wikipedia.org/wiki/Scottsdale,_Arizona',
+      },
+      description: 'Specialized 24/7 toilet repair, luxury bidet servicing, wall-hung concealed tank rebuilds, and leak stopping in Scottsdale, Arizona.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://toiletrepairaz.us/locations/' },
+        { '@type': 'ListItem', position: 3, name: `${city}, AZ`, item: `https://toiletrepairaz.us/locations/scottsdale/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Toilet Repair in Scottsdale, AZ | Same Day Toilet Repair`}
+  description={`Specialized toilet repair in Scottsdale, AZ. Arizona Toilet Repair Co. repairs luxury bidets, wall-hung Geberit tanks, clogs, leaks, and flanges. 24/7 same day dispatch: Call ${phone}.`}
+  canonical="https://toiletrepairaz.us/locations/scottsdale/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="/locations/">Locations</a>
+        <span class="separator">/</span>
+        <span class="current">Scottsdale</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            Luxury & Residential Toilet Specialists • Scottsdale, AZ
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Toilet Repair in Scottsdale, AZ
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            Scottsdale homes feature some of Arizona's most sophisticated bathroom architecture, from concealed in-wall carrier systems to smart bidet fixtures. When mechanical failures or mineral scale compromise your bathroom, Arizona Toilet Repair Co. provides white-glove diagnostic service and lasting repairs 24 hours a day.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Scottsdale Dispatch: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Rapid Response</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt="Same day toilet repair and fixture diagnostic in Scottsdale, AZ - Arizona Toilet Repair Co."
+              title="Scottsdale AZ Toilet Repair Service"
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            24/7 Scottsdale Emergency Dispatch
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">ROC Licensed & Insured</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Verified Arizona contractor</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Luxury System Trained</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Toto, Geberit & Kohler</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Upfront Flat Rates</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">No hourly billing or surprises</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years Experience</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Precision toilet craftsmanship</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Specialized Toilet Solutions for Scottsdale Properties</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Plumbing fixtures in Scottsdale properties span a broad technological range. Mid-century modern homes in South Scottsdale and classic McCormick Ranch properties often rely on standard gravity-fed fixtures mounted on slab foundations. Conversely, custom estates in Silverleaf, Troon, and DC Ranch incorporate complex wall-hung European fixtures, in-wall Geberit carrier assemblies, and smart electronic bidets that general handymen are not equipped to service.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        Our master plumbers arrive with precision test gauges, specialized pneumatic flush tools, non-marring wrenches, and direct manufacturer replacement valves to ensure repairs protect your investment without causing structural or aesthetic tile damage.
+      </p>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
+        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Scottsdale Toilet Services We Deliver:</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Concealed & Base Leak Repair</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Stop hidden leaks around marble floor seals, in-wall carrier discharge joints, and high-pressure stainless braided supply lines.</p>
+            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Leak Procedures &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/running-toilet-repair/" style="color: inherit; text-decoration: none;">Dual-Flush & Cartridge Rebuilds</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Rebuild leaking dual-flush mechanisms, descale European siphon cartridges, and stop phantom water loss on luxury toilets.</p>
+            <a href="/services/running-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Running Toilet Repairs &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Precision Non-Marring Unclogging</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Vinyl-sheathed mechanical augering that clears deep waste stoppages without marking polished porcelain or designer ceramic finishes.</p>
+            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Unclogging Methods &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/commercial-toilet-repair/" style="color: inherit; text-decoration: none;">Commercial Facility Restrooms</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Prompt service for Scottsdale resorts, retail galleries, corporate centers, and restaurants along Scottsdale Road and Old Town.</p>
+            <a href="/services/commercial-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Commercial Restroom Repair &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Water Hardness Challenges in Scottsdale</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        The City of Scottsdale draws water from the Central Arizona Project canal and groundwater wells across the desert valley. Hardness levels consistently range between 14 and 22 grains per gallon. In luxury homes equipped with high-efficiency low-flow toilets, this mineral hardness rapidly crystallizes inside internal intake screens, pressure-assist flush cartridges (Sloan Flushmate), and precision bidet nozzles.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        When calcium flakes migrate into microscopic valve channels, toilets begin whistling, hissing, or failing to refill completely. We perform non-destructive descaling and install high-durability internal replacement valves designed to operate reliably under desert water chemistry.
+      </p>
+
+      <!-- Scottsdale Architectural Eras & Enclaves -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Scottsdale Enclaves & Distinct Plumbing Infrastructure</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Scottsdale features three distinct geographic zones, each characterized by specific bathroom designs and structural plumbing considerations:
+      </p>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-8);">
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">South Scottsdale & Old Town (1950s - 1970s):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Ranch homes around Indian Bend Wash and Old Town feature cast-iron subfloor plumbing. Remodeled bathrooms frequently incorporate large-format luxury tiles installed over older concrete slabs. When original closet flanges sit below the newly raised tile height, standard wax rings blow out, allowing moisture to seep into surrounding grout.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Central Scottsdale (McCormick & Gainey Ranch):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Constructed primarily in the 1980s and 1990s, these estates feature expansive single-level and multi-level floor plans. Pressure-assisted toilets (Flushmate systems) are widespread. These closed vessels require specialized pneumatic diagnostic tools to repair without risking tank rupture.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">North Scottsdale & Custom Foothills (DC Ranch, Troon, Silverleaf):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Custom hillside estates feature European in-wall carrier systems (Geberit, Viega, Grohe) paired with wall-hung porcelain bowls from Duravit, Villeroy & Boch, and Toto. Access is achieved strictly through the flush plate, requiring precision surgical plumbing to avoid disturbing expensive Venetian plaster or marble slabs.</p>
+        </div>
+      </div>
+
+      <div style="margin: var(--space-8) 0; text-align: center;">
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid var(--color-border-light); max-width: 720px; margin: 0 auto;">
+          <img
+            src="/images/modern-toilet-fixture-repair.jpg"
+            alt="Modern luxury porcelain toilet fixture repair and precision descaling in Scottsdale, AZ bathroom"
+            title="Modern Luxury Toilet Fixture Repair - Scottsdale, AZ"
+            width="720"
+            height="480"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: auto; display: block; object-fit: cover;"
+          />
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: var(--space-2); font-style: italic;">
+          Precision repair, mineral descaling, and quiet valve calibration in a luxury Scottsdale residential bathroom.
+        </p>
+      </div>
+
+      <!-- Deep Dive on 5 Common Failures in Scottsdale -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Diagnostic Guide: Solving Common Scottsdale Toilet Malfunctions</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our technicians resolve five recurring mechanical failure modes in Scottsdale homes and luxury estates:
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">1. In-Wall Carrier Frame Deflection & Discharge Joint Leaks</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Wall-hung toilets are anchored to heavy-duty steel carrier frames inside the 2x6 wall cavity. If the mounting studs were not torqued to exact engineering specifications, sitting on the bowl creates vertical deflection. This movement stresses the rubber discharge O-ring behind the wall, creating hidden leaks that damage lower floor ceilings. We re-anchor carrier studs, replace neoprene pipe seals, and re-torque mounting hardware with precision calibrated tools.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">2. Electronic Bidet Solenoid Clogging & Wand Seizure</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Integrated bidet seats like Toto Washlet and Kohler Numi feature internal microscopic mesh filtration screens. Calcium carbonate and silica in Scottsdale water plug these screens within two to three years, causing reduced water flow, error codes, and seized spray wands. We service, chemically descale, and replace internal solenoid intake valves to restore factory operation.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">3. Dual-Flush Cartridge Silicone Seal Warping</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Modern dual-flush toilets utilize a central tower cylinder rather than a traditional flapper. At the base of the tower sits an engineered silicone or polyurethane seal. Chloramines in municipal water swell and distort this seal, allowing a slow, continuous trickle of water into the bowl. We replace degraded seals with authentic European replacement parts and adjust dual-flush volume buttons for optimal hydrodynamic performance.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">4. Marble Floor Base Seal Degradation</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Standard wax rings contain oils that can slowly leach into natural stone floor tiles such as Carrara marble, travertine, or limestone, causing permanent dark staining around the toilet footprint. In Scottsdale luxury bathrooms, we exclusively install non-staining, oil-free urethane gaskets that maintain a positive, airtight seal without staining expensive natural stone surfaces.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-8);">5. Pressure-Assist Tank Rupture and Chamber Cycling</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        Homes in Gainey Ranch and McCormick Ranch often feature Sloan Flushmate pressure-assist vessels inside ceramic tanks. When the internal air-induction regulator gets fouled by hard water calcium, the tank cannot compress air correctly, resulting in loud explosive flushes or complete loss of flushing power. We rebuild internal regulator cartridges and replace aging pressure vessels safely.
+      </p>
+
+      <!-- Resort, Hospitality & Commercial Restroom Services in Scottsdale -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Resort & Commercial Restroom Solutions in Scottsdale</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Scottsdale is renowned worldwide for luxury resorts, premier golf clubhouses, fine dining establishments in Old Town, and upscale retail centers at Scottsdale Fashion Square and Kierland Commons. Commercial restroom downtime directly threatens guest satisfaction and business revenue:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>High-End Resort Casita Restrooms:</strong> We service concealed cisterns and luxury plumbing in private guest casitas and villas across Troon North, Paradise Valley border resorts, and McDowell Mountain retreats with discreet, quiet technicians.</li>
+          <li><strong>Hands-Free Sensor Flushometer Calibration:</strong> Infrared sensor-activated commercial valves require precise optical sensor alignment and solenoid diaphragm cleanouts to avoid embarrassing non-flushes or ghost flushing in luxury restaurant dining restrooms.</li>
+          <li><strong>Priority Commercial Facility Dispatch:</strong> We partner with Scottsdale commercial property managers, resort engineering teams, and corporate facility supervisors with guaranteed rapid-arrival SLAs, night-shift repair capability, and consolidated digital billing.</li>
+          <li><strong>High-Capacity Drain Branch Maintenance:</strong> Heavy guest traffic in resort clubhouses and banquet halls places intense volume on 4-inch main sewer branches. We perform routine mechanical augering to prevent unexpected backups during major events and tournament weekends.</li>
+        </ul>
+      </div>
+
+      <!-- Preventative Maintenance for Scottsdale Properties -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Preventative Maintenance for Scottsdale Estates & Snowbirds</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Scottsdale has a high population of seasonal winter residents. Follow these guidelines to prevent catastrophic leaks while your home is unattended:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Prevent Trapway Evaporation During Summer Vacancies:</strong> Water inside a toilet bowl evaporates within 4 to 6 weeks in an unconditioned Scottsdale bathroom during summer. Add a non-evaporating vapor seal or high-grade food-safe mineral oil layer to preserve the sewer gas trap seal while you are away.</li>
+          <li><strong>Shut Off Individual Angle Stops:</strong> Before leaving for more than two weeks, turn the metal shutoff valve clockwise behind every toilet to isolate tank pressure, preventing unexpected supply line ruptures.</li>
+          <li><strong>Replace Braided Stainless Hoses Every 5 Years:</strong> Even high-end stainless steel braided toilet supply lines contain internal rubber tubing that becomes brittle under constant Scottsdale water pressure. Replace them proactively every five years.</li>
+          <li><strong>Service Water Softener Brine Tanks:</strong> Ensure your whole-home water softener is operating at proper resin capacity. Unsoftened water accelerating into luxury bidet nozzles will ruin internal electronic valves in under 24 months.</li>
+          <li><strong>Inspect Concealed Water Stops in In-Wall Tanks:</strong> For Geberit and in-wall systems, exercise the internal brass isolation stopcock located behind the actuator plate annually. This ensures the valve can be turned off instantly without needing to shut off water to the entire estate during an emergency.</li>
+        </ul>
+      </div>
+
+      <div style="border: 2px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); background: white; margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.3rem;">Transparent Flat-Rate Pricing in Scottsdale</h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+          Every service call begins with a thorough mechanical evaluation followed by a clear, written flat-rate quote before any work starts.
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: var(--color-text);">
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Clear pricing with zero hidden trip or luxury surcharges</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Factory-certified replacement parts for European and domestic fixtures</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Written warranty coverage on all repairs and seal installations</li>
+        </ul>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our 4-Step Scottsdale Repair Protocol</h2>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 1: Punctual Arrival & Floor Protection</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We arrive in clean, organized service vehicles, wear shoe covers, and lay heavy neoprene mats over travertine, hardwood, or tile floors.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 2: Non-Destructive Technical Diagnostic</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We test water pressure, check flush actuator alignment, verify in-wall carrier stability, and pinpoint seal degradation without wall demolition.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 3: Component Replacement & Calibration</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We install factory-certified replacement parts, adjust fill water levels, secure structural mounting bolts, and replace degraded wax rings with heavy-duty urethane seals.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 4: Multi-Cycle Testing & Sanitization</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We run multi-cycle pressure flushes, confirm silent valve shutoff, sanitize the work area, and provide full work documentation.</p>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Scottsdale Neighborhoods We Serve Daily</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our service vans travel regularly along the Loop 101, Scottsdale Road, Frank Lloyd Wright Blvd, and Shea Blvd, serving communities including:
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-6);">
+        {neighborhoods.map((n) => (
+          <span style="background: var(--color-bg-alt); padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; color: var(--color-primary); border: 1px solid var(--color-border-light);">{n}</span>
+        ))}
+      </div>
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-8);">
+        Serving all Scottsdale postal codes including {zipCodes.join(', ')}.
+      </p>
+
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-10);">
+        Contractor credentials verified via the <a href="https://roc.az.gov/" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">Arizona Registrar of Contractors</a>, adhering to local building codes regulated by the <a href="https://www.scottsdaleaz.gov/building-resources" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">City of Scottsdale Planning & Development Services</a>.
+      </p>
+
+      <div style="background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-3);">Serving Nearby Valley Communities:</h3>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="/locations/phoenix/" class="btn btn--outline btn--sm">Phoenix Toilet Repair</a>
+          <a href="/locations/paradise-valley/" class="btn btn--outline btn--sm">Paradise Valley Toilet Repair</a>
+          <a href="/locations/fountain-hills/" class="btn btn--outline btn--sm">Fountain Hills Toilet Repair</a>
+          <a href="/locations/tempe/" class="btn btn--outline btn--sm">Tempe Toilet Repair</a>
+          <a href="/locations/" class="btn btn--outline btn--sm">View All 187 Cities &rarr;</a>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-6);">Frequently Asked Questions: Scottsdale Toilet Repair</h2>
+      <div class="faq-list" style="margin-bottom: var(--space-10);">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Need Expert Toilet Repair in Scottsdale?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Call our Scottsdale dispatch desk right now. A licensed specialist can be at your door promptly with precision parts.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call Scottsdale Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

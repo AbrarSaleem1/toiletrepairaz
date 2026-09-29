@@ -1,0 +1,97 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const address = '9009 N 7th St #201, Phoenix, AZ 85020, USA';
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'WebPage',
+      name: `Terms of Service | ${businessName}`,
+      description: `Terms and conditions of service for ${businessName}.`,
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Terms of Service', item: 'https://toiletrepairaz.us/terms/' },
+      ],
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Terms of Service | ${businessName}`}
+  description={`Terms of Service for ${businessName}. Review our service guidelines, repair warranty details, and diagnostic terms for Arizona customers.`}
+  canonical="https://toiletrepairaz.us/terms/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <span class="current">Terms of Service</span>
+      </nav>
+    </div>
+  </div>
+
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-12) 0;">
+    <div class="container text-center" style="max-width: 800px; margin: 0 auto;">
+      <h1 style="color: var(--color-white); font-size: clamp(2rem, 3.5vw, 2.75rem); line-height: 1.2; margin-bottom: var(--space-3);">
+        Terms of Service
+      </h1>
+      <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9);">
+        Service agreement and operational standards for Arizona Toilet Repair Co.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 850px; margin: 0 auto; line-height: 1.8; color: var(--color-text-secondary);">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">1. Service Authorization & Diagnostics</h2>
+      <p style="margin-bottom: var(--space-6);">
+        By requesting plumbing services from Arizona Toilet Repair Co., the customer authorizes our licensed technicians to perform an on-site physical evaluation of the toilet fixture and related plumbing lines. Before any corrective wrench work or parts installation occurs, our technician provides a firm, upfront flat-rate price quote for customer review and authorization.
+      </p>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">2. Upfront Flat-Rate Pricing</h2>
+      <p style="margin-bottom: var(--space-6);">
+        All quotes provided by our certified technicians are based on standard flat-rate pricing. There are no surprise hourly escalations or hidden trip surcharges. If unforeseen concealed structural conditions (such as rotting subfloors or collapsed branch lines beneath a concrete slab) are discovered during repair, we will pause work and present clear remediation options before proceeding.
+      </p>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">3. Workmanship & Parts Warranty</h2>
+      <p style="margin-bottom: var(--space-6);">
+        We stand behind our repairs. All replacement components installed by Arizona Toilet Repair Co. (including commercial-grade silicone flappers, high-pressure fill valves, heavy-duty brass closet bolts, and reinforced wax-free gaskets) carry complete manufacturer and workmanship warranties. Warranty coverage excludes damages resulting from subsequent misuse, introduction of non-flushable objects, or excessive water pressure exceeding municipal safety codes.
+      </p>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">4. Licensing & Regulatory Standards</h2>
+      <p style="margin-bottom: var(--space-6);">
+        Arizona Toilet Repair Co. operates under valid licensing issued by the Arizona Registrar of Contractors (ROC #329841). All work is performed in strict accordance with the Uniform Plumbing Code (UPC) and relevant Arizona municipal building standards.
+      </p>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.5rem;">5. Contacting Customer Support</h2>
+      <p style="margin-bottom: var(--space-6);">
+        For questions or warranty inquiries, contact our statewide service dispatch team directly:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <strong style="color: var(--color-primary); display: block; font-size: 1.1rem; margin-bottom: 4px;">{businessName}</strong>
+        <p style="margin: 0; color: var(--color-text-secondary);">{address}</p>
+        <p style="margin: 0; color: var(--color-text-secondary);">Direct Dispatch: <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} style="color: var(--color-primary); font-weight: 600;">{phone}</a></p>
+      </div>
+
+      <div class="text-center" style="margin-top: var(--space-10);">
+        <a href="/" class="btn btn--primary">Return to Home</a>
+      </div>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

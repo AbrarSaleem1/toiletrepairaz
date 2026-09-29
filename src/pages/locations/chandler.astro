@@ -1,0 +1,402 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const city = 'Chandler';
+const state = 'AZ';
+const zipCodes = ['85224', '85225', '85226', '85248', '85249', '85286'];
+const neighborhoods = ['Ocotillo', 'Fulton Ranch', 'Sun Lakes', 'Andersen Springs', 'Circle G at Riggs Homestead', 'Clemente Ranch', 'Downtown Chandler', 'Arden Park', 'Pecos Vistas', 'The Provinces'];
+
+const faqs = [
+  {
+    q: 'Why do upstairs toilets in Chandler homes frequently cause ceiling leaks below?',
+    a: 'Chandler experienced tremendous residential expansion during the 1990s and 2000s, with thousands of two-story residences constructed over expansive desert clay soils. Seasonal expansion and micro-settling flex the second-story subfloor framing. Over time, standard wax rings break seal, causing wastewater to seep along the waste pipe and create brown water rings on first-floor kitchen or living room ceilings.',
+  },
+  {
+    q: 'How fast can an emergency plumber reach my home in South Chandler or Sun Lakes?',
+    a: 'Our East Valley service vans operate along the Loop 202 Santan Freeway and Price Road corridors throughout the day. For Chandler homeowners in Ocotillo, Fulton Ranch, or Sun Lakes, our typical arrival window is between 45 and 60 minutes for urgent toilet overflows or sudden valve failures.',
+  },
+  {
+    q: 'Can expansive clay soil in Chandler break my ground-floor toilet flange?',
+    a: 'Yes. Chandler soil contains active clay strata that swell when wet and contract during extreme summer droughts. This movement creates shear stress between the concrete foundation slab and the rigid PVC sewer riser pipe, frequently cracking the closet flange slots and causing ground-floor toilets to rock loose.',
+  },
+  {
+    q: 'How hard is municipal tap water in Chandler and what does it do to internal toilet parts?',
+    a: 'Chandler water averages 14 to 22 grains of dissolved mineral hardness per gallon, treated via the Pecos and Santan water treatment plants. Mineral crystals accumulate on rubber flappers, stiffening them within two to three years and prompting high-cost water leaks.',
+  },
+  {
+    q: 'Do you charge flat rates with upfront quotes in Chandler?',
+    a: 'Yes. We inspect your fixture, determine whether the problem involves a flapper, fill valve, cracked porcelain, or rotted closet flange, and present an upfront, flat-rate quote in writing before beginning any work.',
+  },
+  {
+    q: 'What type of toilet seal is best suited for Chandler two-story slab homes?',
+    a: 'Rather than traditional wax rings that deform permanently when floor framing shifts, we install reinforced urethane or closed-cell rubberized wax-free gaskets equipped with built-in brass closet bolts. These modern seals expand and contract with the home framing, preventing leaks.',
+  },
+  {
+    q: 'Can you service commercial restrooms for tech businesses along the Price Corridor in Chandler?',
+    a: 'Yes. We provide complete 24/7 commercial plumbing maintenance for corporate offices, semiconductor facilities, and restaurants across the Price Road corridor, including Sloan flushometer rebuilds, high-traffic stall clearing, and ADA compliance upgrades.',
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'PlumbingContractor',
+      name: `${businessName} - ${city}`,
+      telephone: '+1-833-845-0906',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '9009 N 7th St #201',
+        addressLocality: 'Phoenix',
+        addressRegion: 'AZ',
+        postalCode: '85020',
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '33.3062',
+        longitude: '-111.8413',
+      },
+      areaServed: {
+        '@type': 'City',
+        name: 'Chandler',
+        sameAs: 'https://en.wikipedia.org/wiki/Chandler,_Arizona',
+      },
+      description: 'Professional 24/7 toilet repair, clog clearing, flange rebuilding, and leak stopping across Chandler, Arizona.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://toiletrepairaz.us/locations/' },
+        { '@type': 'ListItem', position: 3, name: `${city}, AZ`, item: `https://toiletrepairaz.us/locations/chandler/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Toilet Repair in Chandler, AZ | Same Day Toilet Repair`}
+  description={`Broken or leaking toilet in Chandler? Arizona Toilet Repair Co. delivers 24/7 same day toilet repair, clog clearing, and flange rebuilds across Chandler, AZ. Call ${phone}.`}
+  canonical="https://toiletrepairaz.us/locations/chandler/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="/locations/">Locations</a>
+        <span class="separator">/</span>
+        <span class="current">Chandler</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            Santan Freeway Corridor • 24/7 Chandler Dispatch
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Toilet Repair in Chandler, AZ
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            Between active desert clay soil movement stressing subfloor flanges and high mineral water eating through standard flappers, Chandler households need plumbers who specialize in toilet plumbing. Arizona Toilet Repair Co. delivers prompt, dependable 24/7 service statewide.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Chandler Dispatch: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Rapid Response</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt="Same day toilet repair and fixture diagnostic in Chandler, AZ - Arizona Toilet Repair Co."
+              title="Chandler AZ Toilet Repair Service"
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            24/7 Chandler Emergency Dispatch
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">ROC Licensed & Insured</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Verified Arizona contractor</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">45-60 Min Arrival</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Dispatched across East Valley</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Upfront Flat Rates</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">No hourly billing surprises</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years Experience</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Specialized toilet plumbers</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Serving Chandler Families & Tech Corridor Businesses</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Chandler is recognized for modern master-planned communities, high-tech employment centers, and high residential water demands. Homes built in Ocotillo and Fulton Ranch feature sprawling master suites with dual water closets and luxury low-flow toilets. Because these systems are calibrated tightly for water efficiency, even minor mineral buildup in the siphon jet causes sluggish flushes and recurring clogs.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        In established neighborhoods closer to Downtown Chandler and Andersen Springs, older plumbing lines encounter foundation settling that pulls closet flanges out of alignment. Our licensed technicians bring heavy-duty mechanical tools, factory-tested replacement valves, and reinforced seal kits to resolve issues permanently.
+      </p>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
+        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Our Specialized Services in Chandler:</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Second-Story Base Leak Repair</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Stop weeping base seals and cracked wax rings before wastewater damages first-floor ceilings and structural floor joists.</p>
+            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Leak Procedures &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Closet Flange Reconstruction</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Repair cracked PVC collars and anchor wobbling toilet bowls rock-solid into concrete slabs using stainless steel brackets.</p>
+            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Flange Services &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/running-toilet-repair/" style="color: inherit; text-decoration: none;">Phantom Flush & Running Repair</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Eliminate continuous tank cycling, hissing fill valves, and high monthly utility bills with commercial silicone flappers.</p>
+            <a href="/services/running-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Running Toilet Fixes &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Non-Marring Heavy Clog Removal</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Drop-head auger technology that extracts foreign items and deep sewer branch blockages without scratching bowl glaze.</p>
+            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Unclogging Solutions &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Water Hardness Realities in Chandler, Arizona</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Chandler municipal water is treated via the Pecos Surface Water Treatment Plant and the Santan Surface Water Treatment Plant, supplemented by deep groundwater aquifer wells. Dissolved mineral hardness averages 14 to 22 grains per gallon. In closed bathroom environments during warm summer months, calcium crusts rapidly inside toilet tank fill valves and flapper seats.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        When mineral flakes get trapped in internal valve seals, toilets run intermittently, cycling thousands of gallons of water into sewer lines each month. We install commercial-grade anti-siphon fill valves and chemical-resistant silicone flappers designed specifically to repel mineral adhesion.
+      </p>
+
+      <!-- Chandler Housing Eras and Expansive Soil Dynamics -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Chandler Housing Growth & Expansive Clay Subsoil Challenges</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Chandler evolved rapidly from agricultural citrus and cotton fields into one of the nation's premier tech centers. This rapid development spans distinct residential construction eras:
+      </p>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-8);">
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Historic Downtown & North Chandler (1960s - 1980s):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Neighborhoods around downtown Chandler, Galveston, and Andersen Springs feature single-story homes on concrete slabs with cast-iron or early ABS drain pipes. Decades of heavy water usage have thinned original closet flanges, requiring mechanical sleeve retrofits to stop wobble and sewer gas intrusion.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">1990s Suburban Tech Boom (Ocotillo, Clemente Ranch, Sun Lakes):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">During this era, large two-story family homes were built across heavy clay soil basins. Subsurface moisture shifts cause floor joists to deflect slightly over time. Standard wax rings beneath second-floor toilets fail under this deflection, allowing dirty flush water to seep quietly through drywall ceilings into dining rooms and kitchens below.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Modern Master Planned Communities (Fulton Ranch, Arden Park, 2000s+):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Modern high-efficiency bathrooms feature low-profile low-flow toilets (1.28 GPF) connected to post-tension concrete slabs. When rigid PVC flanges crack due to over-tightened bolts or foundation shifting, we reconstruct the mounting base using heavy-gauge stainless steel repair rings secured with Tapcon anchors. Furthermore, primary suites in these homes often include separate water closet compartments where ventilation is restricted, accelerating rubber gasket degradation from trapped humidity.</p>
+        </div>
+      </div>
+
+      <div style="margin: var(--space-8) 0; text-align: center;">
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid var(--color-border-light); max-width: 720px; margin: 0 auto;">
+          <img
+            src="/images/toilet-flapper-fill-valve-repair.jpg"
+            alt="Replacing mineral-scaled flapper and fill valve inside toilet tank in Chandler, AZ home"
+            title="Toilet Tank Flapper and Fill Valve Replacement - Chandler, AZ"
+            width="720"
+            height="480"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: auto; display: block; object-fit: cover;"
+          />
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: var(--space-2); font-style: italic;">
+          Upgrading a mineral-crusted tank fill valve and flapper to heavy-duty silicone components in a Chandler residence.
+        </p>
+      </div>
+
+      <!-- Deep Dive on 5 Common Failures in Chandler -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Diagnostic Guide: Solving Chronic Chandler Toilet Failures</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our technicians resolve five recurring mechanical failure modes in Chandler homes and commercial facilities:
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">1. Second-Story Ceiling Water Spots From Wax Ring Failure</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        If you notice a yellowish-brown stain on your downstairs ceiling directly below an upstairs bathroom, your toilet wax ring has breached. In Chandler's two-story homes, subfloor framing experiences seasonal expansion. Once the wax seal separates from the ceramic horn, water escapes with every flush. We pull the toilet, inspect the subfloor for moisture, and install flexible urethane wax-free seals that flex without breaking bond.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">2. Expansive Clay Slab Movement & Sheared Flanges</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Chandler subsoils contain high percentages of montmorillonite clay, which swells when irrigation water seeps near foundations and shrinks during prolonged summer droughts. This movement exerts shearing force on the 3-inch or 4-inch vertical PVC toilet riser pipe embedded in the slab. When the closet bolt slots snap off the flange, the toilet tilts. We anchor stainless steel reinforcement rings directly to the concrete to secure the fixture permanently.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">3. Phantom Tank Flushing & High Municipal Water Bills</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        A toilet that refills itself every 15 to 30 minutes in an empty bathroom is losing water through a deteriorated flapper or cracked flush valve seat. With City of Chandler tiered water conservation rates, an unattended leak can add over $100 to your monthly utility statement. We replace damaged flappers with commercial chemical-resistant silicone flappers engineered to resist chloramine degradation.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">4. Siphon Jet Calcification & Weak Evacuation</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        When a low-flow toilet in Chandler swirls sluggishly and requires multiple flushes, calcium carbonate crust has choked the siphon jet hole located at the bottom of the bowl. We perform non-corrosive chemical descaling and mechanical reaming to clear mineral buildup, restoring the strong hydraulic siphon draw needed to carry waste down long horizontal branch pipes.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-8);">5. High Water Pressure Ruptures & Water Hammer</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        Water pressure across Chandler neighborhoods can surge above 85 PSI. When aging fill valves slam shut against this pressure, water hammer vibrations rattle internal pipes. We test your home's water pressure, adjust fill valve throttling, and install quiet-fill anti-siphon valve assemblies that eliminate pipe shudder.
+      </p>
+
+      <!-- Preventative Maintenance for Chandler Homeowners -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Preventative Maintenance for Chandler Homeowners</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Maintain your bathroom fixtures and protect your Chandler property with these essential preventative steps:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Check Upstairs Ceiling Drywall Regularly:</strong> Once every few months, visually inspect the ceiling directly below second-floor toilets for faint yellow discoloration or peeling paint. Catching a wax seal breach early prevents thousands in structural drywall and framing repairs.</li>
+          <li><strong>Exercise the Shutoff Valve:</strong> The angle stop valve beneath your toilet tank can seize due to Chandler's hard water minerals. Turn it clockwise and counter-clockwise twice a year to keep the internal valve stem moving smoothly.</li>
+          <li><strong>Avoid Chemical Drop-In Bleach Cakes:</strong> In-tank chlorine cakes corrode brass tank bolts, swell rubber flappers, and attack flush valve seals, turning them into sticky black residue within months.</li>
+          <li><strong>Inspect for Rocking Bowls:</strong> Place both hands on the toilet bowl and apply gentle side-to-side pressure. If the fixture rocks even slightly, contact our team to re-anchor the closet flange before the porcelain cracks.</li>
+          <li><strong>Clean Dual-Flush Push-Buttons:</strong> Modern Chandler bathrooms frequently feature top-mounted dual-flush buttons. Dust, aerosol hairspray, and hard water splash cause the push rods to stick down, leaving the flush valve open. Inspect and wipe the button linkages every few months.</li>
+        </ul>
+      </div>
+
+      <!-- Commercial Plumbing in Chandler Tech Corridor -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Commercial Restroom Services Along the Price Corridor</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        In addition to residential homes, we provide commercial toilet maintenance for tech campuses, retail centers, golf clubhouses in Ocotillo, and dining establishments along the Price Road corridor and Downtown Chandler:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Sloan & Zurn Flushometer Rebuilding:</strong> Commercial flush valves that continuously run or fail to flush properly are restored with genuine factory diaphragm and vacuum breaker kits, ensuring high-traffic facility restrooms remain operational.</li>
+          <li><strong>Multi-Stall Waste Stack Augering:</strong> When multiple commercial restroom fixtures back up simultaneously, we deploy motorized drain clearing snakes to clear heavy paper blockages without disrupting business operations.</li>
+          <li><strong>ADA Compliant Fixture Auditing:</strong> We inspect and retrofit commercial toilet installations to ensure proper seat heights (17 to 19 inches), compliant grab-bar clearances, and open-side flush lever accessibility.</li>
+          <li><strong>Sensor Solenoid Valve Calibration:</strong> We service touchless infrared automated flush valves across Chandler office complexes, clearing mineral sediment from internal pilot holes to stop phantom flushing and conserve municipal water.</li>
+        </ul>
+      </div>
+
+      <div style="border: 2px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); background: white; margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.3rem;">Transparent Flat-Rate Pricing in Chandler</h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+          We give you an upfront flat quote before any repair begins. What you see is what you pay.
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: var(--color-text);">
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Accurate diagnostics with transparent repair options</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Fixed flat rate approved by you before wrench touches pipe</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Solid warranty coverage on all replacement valves, flanges, and seals</li>
+        </ul>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our 4-Step Chandler Repair Execution</h2>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 1: Rapid Response & Area Protection</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">Our van arrives stocked with commercial components. We immediately check supply shutoffs, protect your bathroom tile, and verify water containment.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 2: Root-Cause Mechanical Diagnostic</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We test water pressure, check closet flange stability, measure siphon jet clearance, and perform plumbing dye testing on tank seals.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 3: Commercial Component Installation</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We remove calcified valves, rebuild corroded tank-to-bowl hardware using solid brass bolts, or install heavy-duty wax-free urethane gaskets.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 4: Operational Flush Testing & Sanitization</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We run consecutive full-capacity flushes, verify tank refill height to the exact manufacturer specification, sanitize our work area, and provide written documentation.</p>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Chandler Neighborhoods We Serve Daily</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our service vans travel regularly along the Santan Freeway (Loop 202), Price Road, Arizona Avenue, and Alma School Road, serving communities including:
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-6);">
+        {neighborhoods.map((n) => (
+          <span style="background: var(--color-bg-alt); padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; color: var(--color-primary); border: 1px solid var(--color-border-light);">{n}</span>
+        ))}
+      </div>
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-8);">
+        Serving all Chandler postal codes including {zipCodes.join(', ')}.
+      </p>
+
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-10);">
+        Contractor credentials verified via the <a href="https://roc.az.gov/" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">Arizona Registrar of Contractors</a>, adhering to local building codes regulated by the <a href="https://www.chandleraz.gov/building" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">City of Chandler Building Services</a>.
+      </p>
+
+      <div style="background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-3);">Serving Neighboring East Valley Cities:</h3>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="/locations/gilbert/" class="btn btn--outline btn--sm">Gilbert Toilet Repair</a>
+          <a href="/locations/mesa/" class="btn btn--outline btn--sm">Mesa Toilet Repair</a>
+          <a href="/locations/tempe/" class="btn btn--outline btn--sm">Tempe Toilet Repair</a>
+          <a href="/locations/queen-creek/" class="btn btn--outline btn--sm">Queen Creek Toilet Repair</a>
+          <a href="/locations/" class="btn btn--outline btn--sm">View All 187 Cities &rarr;</a>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-6);">Frequently Asked Questions: Chandler Toilet Repair</h2>
+      <div class="faq-list" style="margin-bottom: var(--space-10);">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Need Reliable Toilet Repair in Chandler?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Call our East Valley dispatch desk right now. A licensed plumber can be at your Chandler door promptly.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call Chandler Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

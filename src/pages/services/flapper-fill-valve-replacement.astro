@@ -1,0 +1,276 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const serviceTitle = 'Flapper & Fill Valve Replacement';
+const serviceSlug = 'flapper-fill-valve-replacement';
+
+const faqs = [
+  {
+    q: 'Why do generic replacement flappers fail so quickly in Arizona?',
+    a: 'Hardware store replacement flappers are often made from low-grade neoprene or thin rubber. In Arizona, the combination of municipal water disinfectant chemicals (chlorine and chloramines) and mineral hardness breaks down these soft polymers in under 12 to 18 months, causing warping, brittleness, or black residue that breaks the seal.',
+  },
+  {
+    q: 'How do I know whether my toilet needs a 2-inch or 3-inch flapper?',
+    a: 'Modern high-efficiency toilets (manufactured after 2005) typically utilize larger 3-inch or 3.25-inch flush valves to deliver a high-velocity flush using less water (1.28 or 1.6 GPF). Older fixtures use standard 2-inch valves. Our technicians carry all sizes of universal and proprietary commercial-grade flappers on our trucks.',
+  },
+  {
+    q: 'What is an anti-siphon fill valve and why is it legally required?',
+    a: 'An anti-siphon fill valve prevents contaminated toilet tank water from being sucked back into your home\'s fresh drinking water supply if municipal water pressure drops suddenly. The Uniform Plumbing Code enforced throughout Arizona strictly requires certified anti-siphon valves.',
+  },
+  {
+    q: 'Can a failing fill valve cause my toilet to make loud hammering noises?',
+    a: 'Yes. When the internal diaphragm of an aging fill valve rapidly oscillates against incoming high-pressure water, it creates violent pressure waves known as "water hammer." This can stress your home\'s copper, PEX, or CPVC plumbing lines until a valve is replaced.',
+  },
+  {
+    q: 'How long does a professional flapper and fill valve replacement take?',
+    a: 'Our licensed technicians generally complete the diagnostic check, full removal of old calcified components, installation of heavy-duty silicone parts, water line adjustment, and testing in approximately 30 to 45 minutes.',
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'Service',
+      name: `${serviceTitle} in Arizona`,
+      provider: {
+        '@type': 'PlumbingContractor',
+        name: businessName,
+        telephone: '+1-833-845-0906',
+        address: {
+          '@type': 'PostalAddress',
+          streetAddress: '9009 N 7th St #201',
+          addressLocality: 'Phoenix',
+          addressRegion: 'AZ',
+          postalCode: '85020',
+          addressCountry: 'US',
+        },
+      },
+      areaServed: { '@type': 'State', name: 'Arizona' },
+      description: 'Professional flapper and anti-siphon fill valve replacement across Arizona. Commercial-grade silicone flappers, quiet-fill valves, and hard water descaling.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Services', item: 'https://toiletrepairaz.us/services/' },
+        { '@type': 'ListItem', position: 3, name: serviceTitle, item: `https://toiletrepairaz.us/services/${serviceSlug}/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Same Day Flapper & Fill Valve Toilet Repair in Arizona`}
+  description={`Upgrade to hard-water-resistant flappers and quiet fill valves. Arizona Toilet Repair Co. delivers professional toilet valve repair and replacement across Arizona. Call ${phone}.`}
+  canonical={`https://toiletrepairaz.us/services/${serviceSlug}/`}
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="/services/">Services</a>
+        <span class="separator">/</span>
+        <span class="current">{serviceTitle}</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            Chloramine-Resistant Silicone Flappers & Anti-Siphon Valves
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Flapper and Fill Valve Replacement in Arizona
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            Generic hardware store components dissolve quickly in Arizona's mineral-laden water. We install heavy-duty, commercial-grade fill valves and specialized silicone flappers engineered to withstand harsh desert conditions.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call For Immediate Service: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Rapid Response</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-flapper-fill-valve-repair.jpg"
+              alt="Replacing toilet flapper and anti-siphon fill valve in Arizona home"
+              title="Toilet Flapper and Fill Valve Replacement - Arizona Toilet Repair Co."
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            Precision Tank Valve Calibration
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years Experience</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Master plumbing diagnostics</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Silicone Polymers</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Resists chlorine & hard water</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Quiet Fill Technology</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">No hissing or water hammer</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Upfront Pricing</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Flat rates, no hidden fees</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Why Arizona Water Demands Specialized Valve Components</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Arizona tap water carries high concentrations of dissolved calcium, magnesium, chlorides, and chloramines. When traditional rubber flappers sit submerged in treated desert water, the chlorine oxidizes the rubber molecules, causing them to turn into a black, sticky goo or warp at the hinge arms. When the flapper cannot seat flat against the flush valve orifice, thousands of gallons leak through silently.
+      </p>
+
+      <div style="margin: var(--space-8) 0; text-align: center;">
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid var(--color-border-light); max-width: 720px; margin: 0 auto;">
+          <img
+            src="/images/toilet-repair-tools-service.jpg"
+            alt="Professional plumbing tools used for precision toilet fill valve and flapper installation in Arizona"
+            title="Professional Valve Replacement Tools - Arizona Toilet Repair Co."
+            width="720"
+            height="480"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: auto; display: block; object-fit: cover;"
+          />
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: var(--space-2); font-style: italic;">
+          Specialized plumbing spud wrenches ensure tight, leak-free seals without over-torquing fragile ceramic tank mounting holes.
+        </p>
+      </div>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-lg); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.3rem;">What We Upgrade During Replacement:</h3>
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Premium Anti-Siphon Fill Valves:</strong> Quiet-fill, code-compliant assemblies engineered with corrosion-proof internal diaphragms that resist hard water grit.</li>
+          <li><strong>Chemical-Resistant Silicone Flappers:</strong> High-grade red or blue specialty polymers immune to chlorine degradation, backed by extended lifespans.</li>
+          <li><strong>Corrosion-Proof Stainless Steel Lift Chains:</strong> Kink-free beaded or link chains that will not rust, stretch, or bind on the trip lever.</li>
+          <li><strong>Tank Water Line Calibration:</strong> Precision tuning of the float height to maximize flush momentum while maintaining necessary water conservation thresholds.</li>
+        </ul>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our 4-Step Valve Replacement Process</h2>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">1. Isolation & Tank Evacuation</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We shut off the angle stop valve, drain the tank completely, and vacuum remaining sediment and mineral flakes from the bottom of the porcelain tank.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">2. Valve Seat Descaling</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We clean and scrape the flush valve seat using non-abrasive tools to eliminate calcified ridge lines that prevent new flappers from sealing.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">3. Commercial Fill Valve Installation</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We install an anti-siphon, high-pressure fill valve, securely tightened with heavy rubber shank washers to prevent external base drips.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">4. Refill Ratio Tuning & Leak Dye Test</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We calibrate the bowl refill tube clip so the bowl trapway fills to optimal depth without overflow, followed by a leak verification test.</p>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-6);">Frequently Asked Questions</h2>
+      <div class="faq-list" style="margin-bottom: var(--space-10);">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+
+      <div style="border-top: 1px solid var(--color-border-light); padding-top: var(--space-8); margin-bottom: var(--space-8);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-4);">Explore Related Toilet Services:</h3>
+        <div style="display: flex; gap: var(--space-4); flex-wrap: wrap;">
+          <a href="/services/running-toilet-repair/" class="btn btn--outline btn--sm">Running Toilet Repair</a>
+          <a href="/services/toilet-leak-repair/" class="btn btn--outline btn--sm">Toilet Leak Repair</a>
+          <a href="/services/clogged-toilet-unclogging/" class="btn btn--outline btn--sm">Clogged Toilet Unclogging</a>
+          <a href="/services/flange-repair/" class="btn btn--outline btn--sm">Flange Repair</a>
+          <a href="/services/emergency-toilet-repair/" class="btn btn--outline btn--sm">Emergency Toilet Repair</a>
+          <a href="/services/commercial-toilet-repair/" class="btn btn--outline btn--sm">Commercial Restroom Repair</a>
+        </div>
+      </div>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-3); font-size: 1.15rem;">Silicone Flapper & Valve Installation Across Key Arizona Cities:</h3>
+        <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+          We install commercial-grade, chloramine-resistant valves across:
+        </p>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="/locations/phoenix/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Phoenix Flapper Replacement</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/tucson/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Tucson Fill Valve Installation</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/mesa/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Mesa Toilet Valve Upgrade</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/scottsdale/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Scottsdale High-Efficiency Valves</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/chandler/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Chandler Flapper Fix</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/gilbert/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Gilbert Toilet Rebuild</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/avondale/" style="color: var(--color-primary); font-weight: 600; text-decoration: underline; font-size: 0.9rem;">Avondale Valve Service</a>
+          <span style="color: var(--color-text-light);">•</span>
+          <a href="/locations/" style="color: var(--color-accent); font-weight: 700; text-decoration: underline; font-size: 0.9rem;">View All 187 Cities &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Need a Flapper or Fill Valve Replaced Today?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Our service trucks carry universal and commercial-grade valves for all toilet models across Arizona. Call 24/7 for fast dispatch.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call 24/7 Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>

@@ -1,0 +1,112 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  canonical?: string;
+  ogImage?: string;
+  schema?: string;
+}
+
+const {
+  title,
+  description,
+  canonical = '',
+  ogImage = '/images/og-default.webp',
+  schema = '',
+} = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+  <title>{title}</title>
+  <meta name="description" content={description} />
+
+  {canonical && <link rel="canonical" href={canonical} />}
+
+  <!-- Robots & Search Engine Indexing -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+
+  <!-- Geographic Location Signals for Arizona -->
+  <meta name="geo.region" content="US-AZ" />
+  <meta name="geo.placename" content="Phoenix, Arizona" />
+  <meta name="geo.position" content="33.5683;-112.0652" />
+  <meta name="ICBM" content="33.5683, -112.0652" />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Arizona Toilet Repair Co." />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  {canonical && <meta property="og:url" content={canonical} />}
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Schema -->
+  {schema && <script type="application/ld+json" set:html={schema} />}
+
+  <slot name="head" />
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <slot name="header" />
+
+  <main id="main-content">
+    <slot />
+  </main>
+
+  <slot name="footer" />
+
+  <!-- Scroll to top -->
+  <button class="scroll-top" id="scroll-top-btn" aria-label="Scroll to top">
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="5 12 10 7 15 12" />
+    </svg>
+  </button>
+
+  <!-- Global JS -->
+  <script>
+    // Scroll-to-top button
+    const scrollBtn = document.getElementById('scroll-top-btn');
+    if (scrollBtn) {
+      window.addEventListener('scroll', () => {
+        scrollBtn.classList.toggle('visible', window.scrollY > 500);
+      }, { passive: true });
+      scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      });
+    }
+
+    // Fade-up scroll animations
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>

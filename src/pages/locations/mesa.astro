@@ -1,0 +1,401 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+
+const businessName = 'Arizona Toilet Repair Co.';
+const phone = '(833) 845-0906';
+const city = 'Mesa';
+const state = 'AZ';
+const zipCodes = ['85201', '85202', '85203', '85204', '85205', '85206', '85207', '85208', '85209', '85210', '85212', '85213', '85215'];
+const neighborhoods = ['Dobson Ranch', 'Eastmark', 'Red Mountain Ranch', 'Las Sendas', 'Alta Mesa', 'Superstition Springs', 'Augusta Ranch', 'Fiesta District', 'Falcon Field Area', 'Citrus Groves'];
+
+const faqs = [
+  {
+    q: 'How quickly can an emergency plumber reach my home in Mesa?',
+    a: 'Our East Valley mobile units patrol the US-60 Superstition Freeway and Loop 202 Red Mountain Freeway corridors daily. For Mesa homeowners in Dobson Ranch, Alta Mesa, or Eastmark, our typical arrival time is between 45 and 60 minutes for urgent toilet overflows or sewage backups.',
+  },
+  {
+    q: 'Why do toilets in Eastmark and newer East Mesa master-planned communities experience fill valve blowouts?',
+    a: 'Newer developments in East Mesa often receive municipal water delivered at street pressures exceeding 85 to 100 PSI before passing through home pressure reducing valves (PRVs). When community PRVs fail or spike during utility maintenance, standard toilet fill valve diaphragms rupture, causing loud whistling noises and continuous tank overflowing.',
+  },
+  {
+    q: 'Can you repair a rusted cast-iron closet flange in an older West Mesa home without breaking the concrete floor?',
+    a: 'Yes. Central and West Mesa homes built between 1960 and 1985 frequently feature cast-iron drain lines set in concrete slabs. When the cast-iron flange collar corrodes away, we install stainless steel mechanical compression repair flanges or split-ring assemblies that lock firmly inside the pipe without jackhammering bathroom floor tile.',
+  },
+  {
+    q: 'How hard is municipal water in Mesa and what damage does it cause to toilets?',
+    a: 'Mesa municipal water tests between 12 and 22 grains of hardness per gallon, derived from the Salt River and Central Arizona Project. Calcium carbonate scales inside the lower siphon jet hole of your toilet bowl, restricting flush velocity and resulting in repeated clogs.',
+  },
+  {
+    q: 'Do you provide flat-rate quotes before starting work in Mesa?',
+    a: 'Yes. We inspect your toilet fixture, diagnose whether the failure is localized to a valve, wax seal, or sewer branch line, and give you an upfront flat-rate price in writing before starting any repair work.',
+  },
+  {
+    q: 'Why does my toilet make a high-pitched whistling noise after flushing in Mesa?',
+    a: 'A whistling or hissing noise after flushing usually signals that municipal water pressure is forcing past a deteriorated diaphragm inside the fill valve. Mineral grit from hard water lodges in the valve seat, preventing a clean shutoff.',
+  },
+  {
+    q: 'Can you fix an uneven or rocking toilet on Mexican Saltillo tile in Mesa homes?',
+    a: 'Yes. Many homes in Dobson Ranch and Alta Mesa feature handmade Saltillo or irregular ceramic tile. We use specialized composite wobble shims, flexible non-staining seals, and solid brass bolts to achieve a rock-solid, level anchor without cracking uneven tile surfaces.',
+  },
+];
+
+const schema = JSON.stringify({
+  '@context': 'https://schema.org',
+  '@graph': [
+    {
+      '@type': 'PlumbingContractor',
+      name: `${businessName} - ${city}`,
+      telephone: '+1-833-845-0906',
+      address: {
+        '@type': 'PostalAddress',
+        streetAddress: '9009 N 7th St #201',
+        addressLocality: 'Phoenix',
+        addressRegion: 'AZ',
+        postalCode: '85020',
+        addressCountry: 'US',
+      },
+      geo: {
+        '@type': 'GeoCoordinates',
+        latitude: '33.4152',
+        longitude: '-111.8315',
+      },
+      areaServed: {
+        '@type': 'City',
+        name: 'Mesa',
+        sameAs: 'https://en.wikipedia.org/wiki/Mesa,_Arizona',
+      },
+      description: 'Professional 24/7 toilet repair, clog clearing, flange rebuilding, and running toilet fixes in Mesa, Arizona.',
+    },
+    {
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        { '@type': 'ListItem', position: 1, name: 'Home', item: 'https://toiletrepairaz.us/' },
+        { '@type': 'ListItem', position: 2, name: 'Locations', item: 'https://toiletrepairaz.us/locations/' },
+        { '@type': 'ListItem', position: 3, name: `${city}, AZ`, item: `https://toiletrepairaz.us/locations/mesa/` },
+      ],
+    },
+    {
+      '@type': 'FAQPage',
+      mainEntity: faqs.map(f => ({
+        '@type': 'Question',
+        name: f.q,
+        acceptedAnswer: { '@type': 'Answer', text: f.a },
+      })),
+    },
+  ],
+});
+---
+
+<BaseLayout
+  title={`Toilet Repair in Mesa, AZ | Same Day Toilet Repair`}
+  description={`Got toilet troubles in Mesa? Arizona Toilet Repair Co. offers 24/7 same day toilet repair, clog clearing, leak fixes, and flange rebuilding across Mesa, AZ. Call ${phone}.`}
+  canonical="https://toiletrepairaz.us/locations/mesa/"
+  schema={schema}
+>
+  <Header slot="header" businessName={businessName} phone={phone} />
+
+  <div class="breadcrumb-bar" style="background: var(--color-bg-alt); padding: var(--space-3) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="/">Home</a>
+        <span class="separator">/</span>
+        <a href="/locations/">Locations</a>
+        <span class="separator">/</span>
+        <span class="current">Mesa</span>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Hero Section (Furnace Repair Pros 2-Column Style) -->
+  <section style="background: var(--color-primary-gradient); color: var(--color-white); padding: var(--space-16) 0 var(--space-12);">
+    <div class="container" style="max-width: 1200px; margin: 0 auto;">
+      <div class="hero-split-grid">
+        <div class="hero-content-col">
+          <span class="badge" style="background: rgba(234, 88, 12, 0.2); color: #FB923C; border: 1px solid rgba(251, 146, 60, 0.4); padding: 6px 14px; border-radius: 999px; font-weight: 700; font-size: 0.875rem; text-transform: uppercase; display: inline-block; margin-bottom: var(--space-4);">
+            East Valley Priority Dispatch • Mesa, AZ
+          </span>
+          <h1 style="color: var(--color-white); font-size: clamp(2.2rem, 3.8vw, 3.25rem); line-height: 1.15; margin-bottom: var(--space-4); font-weight: 800;">
+            Same Day Toilet Repair in Mesa, AZ
+          </h1>
+          <p style="font-size: var(--text-lg); color: rgba(255, 255, 255, 0.9); line-height: 1.6; margin-bottom: var(--space-6);">
+            Mesa residents encounter a distinct mix of plumbing challenges, from vintage cast-iron flange corrosion in established West Mesa neighborhoods to high-pressure line surges in Eastmark. Arizona Toilet Repair Co. delivers rapid 24/7 toilet diagnostics and lasting repairs statewide.
+          </p>
+          <div class="hero-btn-row" style="display: flex; gap: var(--space-4); flex-wrap: wrap; margin-bottom: var(--space-6);">
+            <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+              Call Mesa Dispatch: {phone}
+            </a>
+          </div>
+          <div class="hero-trust-pills" style="display: flex; gap: var(--space-5); flex-wrap: wrap; font-size: 0.925rem; color: rgba(255,255,255,0.85);">
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> ROC Licensed #329841</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Upfront Flat-Rate</span>
+            <span style="display: inline-flex; align-items: center; gap: 6px;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#22C55E" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> 24/7 Rapid Response</span>
+          </div>
+        </div>
+
+        <div style="position: relative;">
+          <div style="border-radius: 16px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.35); border: 3px solid rgba(255,255,255,0.15); background: rgba(255,255,255,0.05);">
+            <img
+              src="/images/toilet-repair-tools-service.jpg"
+              alt="Same day toilet repair and fixture diagnostic in Mesa, AZ - Arizona Toilet Repair Co."
+              title="Mesa AZ Toilet Repair Service"
+              width="600"
+              height="450"
+              loading="eager"
+              fetchpriority="high"
+              style="width: 100%; height: auto; display: block; object-fit: cover; aspect-ratio: 4/3;"
+            />
+          </div>
+          <div style="position: absolute; bottom: 16px; left: 16px; background: rgba(12, 35, 64, 0.92); backdrop-filter: blur(8px); padding: 8px 16px; border-radius: 8px; border-left: 4px solid var(--color-accent); color: white; font-size: 0.85rem; font-weight: 700; box-shadow: 0 4px 12px rgba(0,0,0,0.25);">
+            24/7 Mesa Emergency Dispatch
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section style="background: var(--color-bg); padding: var(--space-6) 0; border-bottom: 1px solid var(--color-border-light);">
+    <div class="container">
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: var(--space-4); text-align: center;">
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">ROC Licensed & Insured</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Verified Arizona contractor</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Fast East Valley Arrival</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Patrolling US-60 & Loop 202</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">Upfront Flat Pricing</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Zero hidden fees or surprises</span></div>
+        <div><strong style="color: var(--color-primary); font-size: 1.1rem; display: block;">15+ Years Experience</strong><span style="color: var(--color-text-light); font-size: 0.875rem;">Specialized toilet plumbing</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Comprehensive Toilet Repair Across the City of Mesa</h2>
+      <p style="font-size: 1.1rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        As the central hub of the East Valley and Arizona's third-largest city, Mesa contains over 140 square miles of diverse architectural styles. Older ranch properties constructed along University and Main Street feature subfloor drainage systems that require gentle augering to preserve aging pipes. Meanwhile, master-planned developments stretching toward the Superstition Mountains experience intense water hammer and fill valve wear triggered by high municipal main line pressure.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        Our technicians carry specialized commercial equipment to service modern dual-flush systems, commercial Sloan flushometers in Mesa business corridors, and heavy-duty wax-free closet seals that withstand desert thermal cycles.
+      </p>
+
+      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
+        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Primary Toilet Services in Mesa:</h3>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Base & Tank Leak Stopping</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Immediate diagnosis of leaking wax seals, rusty tank bolts, and hairline porcelain fractures before bathroom subfloor rot develops.</p>
+            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Leak Solutions &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flapper-fill-valve-replacement/" style="color: inherit; text-decoration: none;">Fill Valve & Flapper Upgrades</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Installation of quiet, anti-siphon valves and chlorine-resistant silicone flappers designed to resist Mesa's heavy mineral tap water.</p>
+            <a href="/services/flapper-fill-valve-replacement/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Valve Options &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Closet Flange Reconstruction</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Specialized mechanical flange rings to stabilize rocking bowls and fix cracked PVC collars embedded in concrete slabs.</p>
+            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Flange Services &rarr;</a>
+          </div>
+          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
+            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/emergency-toilet-repair/" style="color: inherit; text-decoration: none;">24/7 Emergency Dispatch</a></h4>
+            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Immediate on-call response across Mesa for overflowing fixtures, broken supply shutoff valves, and sewer line backups.</p>
+            <a href="/services/emergency-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Emergency Help &rarr;</a>
+          </div>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Local Water Dynamics in Mesa, Arizona</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        The City of Mesa sources water through three major water treatment plants: Val Vista, Brown Road, and Signal Butte. Raw water travels through the Salt River Project (SRP) canal system and the Central Arizona Project canal. Hardness measurements consistently range between 12 and 22 grains per gallon depending on seasonal river runoff and canal blending ratios.
+      </p>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        In practical terms, this mineral load coats internal toilet components in chalky scale. Fill valve float assemblies become sluggish, refusing to shut off when the tank fills. Concurrently, high concentrations of chloramines break down flexible flappers, causing continuous phantom flushing. Our technicians calibrate every installation to compensate for local mineral content and incoming line pressure.
+      </p>
+
+      <!-- Mesa Housing Eras and Structural Foundations -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Mesa Housing Eras & Unique Foundation Challenges</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Understanding when a Mesa home was built reveals the specific plumbing challenges beneath its bathroom floors:
+      </p>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-8);">
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Pioneer & Historic West Mesa (1940s - 1960s):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Surrounding downtown Mesa and the Citrus Groves, older homes feature cast-iron soil pipes set directly into thick concrete slabs. After 50+ years, sulfur sewer gas thins the iron closet collar, causing bolts to rip free and the toilet to rock. We install internal compression sleeves that seal without breaking the slab.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Mid-Valley Master Planned Era (1970s - 1990s):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">Dobson Ranch, Alta Mesa, and Superstition Springs brought widespread adoption of ABS and early PVC drainage. Many master bathrooms featured sunken tubs and raised platforms. Foundation settling across expansive East Valley clay soils frequently shears closet flanges where pipes transition through concrete slabs.</p>
+        </div>
+        <div style="padding: var(--space-5); background: var(--color-bg); border-radius: var(--radius-md); border-left: 4px solid var(--color-primary);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">New East Mesa Developments (2000s - Present):</strong>
+          <p style="margin: 0; color: var(--color-text-secondary); line-height: 1.6;">In communities such as Eastmark, Mulberry, and Las Sendas, modern low-flow 1.28 GPF fixtures struggle with long horizontal waste pipe pitches. Furthermore, high municipal street water pressures (often 90+ PSI) rupture standard intake fill valves unless paired with heavy-duty pressure-rated assemblies.</p>
+        </div>
+      </div>
+
+      <div style="margin: var(--space-8) 0; text-align: center;">
+        <div style="border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); border: 1px solid var(--color-border-light); max-width: 720px; margin: 0 auto;">
+          <img
+            src="/images/toilet-wax-ring-leak-repair.jpg"
+            alt="Replacing melted toilet wax ring seal and inspecting closet flange in Mesa, AZ home"
+            title="Toilet Wax Ring Leak Repair - Mesa, AZ"
+            width="720"
+            height="480"
+            loading="lazy"
+            decoding="async"
+            style="width: 100%; height: auto; display: block; object-fit: cover;"
+          />
+        </div>
+        <p style="font-size: 0.875rem; color: var(--color-text-light); margin-top: var(--space-2); font-style: italic;">
+          Professional inspection and replacement of a deteriorated toilet wax seal and closet flange in an East Valley home.
+        </p>
+      </div>
+
+      <!-- Deep Dive on 5 Common Failures in Mesa -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Diagnostic Guide: Solving Common Mesa Toilet Malfunctions</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our technicians resolve five recurring mechanical failure modes in Mesa residential and commercial bathrooms:
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">1. Phantom Flushing and Continuous Tank Cycling</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        When a toilet in Mesa intermittently hisses and refills on its own every 20 minutes, water is slowly leaking past the flapper seal into the bowl. This problem is exacerbated by Mesa's high municipal chloramine levels, which oxidize standard rubber flappers into a soft, misshapen seal. We install chemical-resistant silicone flappers and precision-molded valve seats that resist chlorine and mineral scale.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">2. Calcium Calcification Inside Rim Ports and Siphon Jets</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        If your toilet produces a swirling flush that fails to evacuate solid waste, the issue is rarely a pipe clog. More often, calcium carbonate crystals deposited by Mesa tap water have choked the small water ports beneath the rim and the siphon jet hole at the bowl's bottom. We chemically descale and mechanically ream these passageways, restoring the high-velocity siphon draw designed by the manufacturer.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">3. Base Leaks and Wax Ring Melting Under Radiant Heat</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Many Mesa homes sit on slab-on-grade foundations that absorb intense summer ground heat. Petroleum-based wax rings soften when subjected to prolonged summer temperatures, especially in bathrooms with direct solar exposure. Any minor bowl rocking squishes the soft wax out of place, creating an unsealed breach that allows wastewater to pool around floor tiles. We replace failed wax with resilient urethane seals that maintain shape permanently.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-2);">4. High-Pressure Fill Valve Hissing and Water Hammer</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        In East Mesa, municipal water pressure often exceeds residential safety thresholds. When fill valves close rapidly against 85+ PSI water, hydraulic shockwaves bounce through copper water lines, shaking drywall and stressing solder joints. Our team tests your static incoming pressure, installs anti-hammer quiet-fill valves, and ensures your home's pressure-reducing valve is properly calibrated.
+      </p>
+
+      <h3 style="color: var(--color-primary); font-size: 1.25rem; margin-bottom: var(--space-8);">5. Broken Closet Flanges and Rocking Porcelain Bowls</h3>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-8);">
+        When closet bolts pull through rusted cast-iron or cracked plastic flange slots, the toilet bowl wobbles whenever someone sits down. Left unaddressed, this leverages against the porcelain base, causing it to crack and flood the bathroom. We install heavy-gauge stainless steel repair rings anchored directly into the concrete slab with masonry fasteners, ensuring a rigid, lifetime connection.
+      </p>
+
+      <!-- Commercial & Multifamily Toilet Solutions in Mesa -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Commercial & Rental Property Toilet Services in Mesa</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Beyond residential single-family homes, Mesa contains a high concentration of commercial business parks around Falcon Field, shopping centers in Superstition Springs, and large multi-family apartment communities throughout West Mesa. Commercial restroom failures require rapid, specialized mechanical intervention:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Sloan & Zurn Flushometer Rebuilds:</strong> High-traffic commercial flush valves rely on sensitive internal diaphragms. Calcium scale in Mesa water clogs the microscopic relief orifice, causing flushometers to run continuously. We rebuild internal assemblies with factory commercial kits.</li>
+          <li><strong>ADA Compliant Height Retrofits:</strong> We assist commercial property managers in bringing public restrooms into full compliance with American with Disabilities Act (ADA) seat height requirements (17 to 19 inches) and compliant flush lever positioning.</li>
+          <li><strong>Rental Property Priority Dispatch:</strong> For local Mesa landlords and property management firms, a broken toilet in a single-bathroom rental constitutes a legal habitability emergency. We provide rapid dispatch and direct digital invoicing.</li>
+          <li><strong>Multi-Stall Waste Stack Clearing:</strong> When multiple commercial toilets back up concurrently in a retail or dining establishment, we deploy motorized drain snakes through rooftop vents or cleanout ports to clear heavy paper blockages without disrupting customer operations.</li>
+        </ul>
+      </div>
+
+      <!-- Preventative Maintenance for Mesa Homeowners -->
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Preventative Maintenance for Mesa Homeowners</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-4);">
+        Follow these practical maintenance practices to prevent unexpected toilet breakdowns and water waste in your Mesa home:
+      </p>
+      <div style="background: var(--color-bg-alt); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-8);">
+        <ul style="line-height: 1.8; color: var(--color-text-secondary); margin-left: var(--space-4);">
+          <li><strong>Test the Emergency Shutoff Angle Stop Twice Annually:</strong> Calcium deposits in Mesa water can seize the valve stem. Turn the oval handle behind your toilet gently back and forth once every six months to keep it moving smoothly.</li>
+          <li><strong>Perform an Overnight Tank Dye Test:</strong> Place three drops of dark food coloring in the tank before bed without flushing. If color seeps into the bowl by morning, your flapper is leaking and wasting water.</li>
+          <li><strong>Avoid Corrosive Chemical In-Tank Drop-Ins:</strong> Blue or bleach chlorine tablets degrade internal rubber seals, warp flappers, and corrode brass bolts within months, causing premature leaks.</li>
+          <li><strong>Verify Bowl Stability:</strong> Place gentle pressure on the rim with your hands. If the toilet shifts or rocks even a fraction of an inch, have the closet flange inspected before the seal fails completely.</li>
+        </ul>
+      </div>
+
+      <div style="border: 2px solid var(--color-border); border-radius: var(--radius-lg); padding: var(--space-6); background: white; margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.3rem;">Transparent Upfront Flat Pricing in Mesa</h3>
+        <p style="color: var(--color-text-secondary); line-height: 1.6; margin-bottom: var(--space-4);">
+          You receive a firm written quote before we start. No unexpected hourly bills, no surprise supply charges, and no hidden trip costs.
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0; line-height: 1.8; color: var(--color-text);">
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Accurate diagnostics with clear repair alternatives explained</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Direct flat-rate quote approved by you before wrench turns</li>
+          <li style="display: flex; gap: 8px; align-items: center;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--color-success)" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Complete warranty protection on all installed parts</li>
+        </ul>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Our 4-Step Repair Procedure</h2>
+      <div style="display: grid; gap: var(--space-4); margin-bottom: var(--space-10);">
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 1: Rapid Response & Area Protection</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We arrive in fully equipped service vans, isolate water supplies, and protect bathroom flooring with clean drop cloths and sanitary shoe covers.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 2: Systematic Mechanical Inspection</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We test water pressure, check closet flange stability, measure siphon jet clearance, and perform plumbing dye testing on tank seals.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 3: Heavy-Duty Part Installation</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We install anti-siphon fill valves, commercial silicone flappers, stainless flange repair brackets, and solid brass tank bolt sets.</p>
+        </div>
+        <div style="padding: var(--space-4); border-left: 4px solid var(--color-accent); background: var(--color-bg);">
+          <strong style="color: var(--color-primary); font-size: 1.1rem; display: block; margin-bottom: 4px;">Step 4: Hydrodynamic Testing & Sanitization</strong>
+          <p style="margin: 0; color: var(--color-text-secondary);">We conduct consecutive flush tests under maximum load, confirm water level calibration, disinfect the workspace, and provide complete documentation.</p>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Neighborhoods We Cover Across Mesa</h2>
+      <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
+        Our service vans provide complete coverage throughout the City of Mesa and surrounding East Valley communities, including:
+      </p>
+      <div style="display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: var(--space-6);">
+        {neighborhoods.map((n) => (
+          <span style="background: var(--color-bg-alt); padding: 6px 14px; border-radius: var(--radius-sm); font-size: 0.9rem; font-weight: 600; color: var(--color-primary); border: 1px solid var(--color-border-light);">{n}</span>
+        ))}
+      </div>
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-8);">
+        Serving all Mesa postal codes including {zipCodes.join(', ')}.
+      </p>
+
+      <p style="font-size: 0.95rem; color: var(--color-text-light); margin-bottom: var(--space-10);">
+        Contractor credentials verified via the <a href="https://roc.az.gov/" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">Arizona Registrar of Contractors</a>, adhering to local building codes regulated by the <a href="https://www.mesaaz.gov/business/development-services" target="_blank" rel="noopener nofollow" style="color: var(--color-primary); text-decoration: underline;">City of Mesa Development Services Department</a>.
+      </p>
+
+      <div style="background: var(--color-bg); padding: var(--space-6); border-radius: var(--radius-md); margin-bottom: var(--space-10);">
+        <h3 style="color: var(--color-primary); font-size: 1.2rem; margin-bottom: var(--space-3);">Serving Neighboring East Valley Cities:</h3>
+        <div style="display: flex; gap: var(--space-3); flex-wrap: wrap;">
+          <a href="/locations/gilbert/" class="btn btn--outline btn--sm">Gilbert Toilet Repair</a>
+          <a href="/locations/chandler/" class="btn btn--outline btn--sm">Chandler Toilet Repair</a>
+          <a href="/locations/apache-junction/" class="btn btn--outline btn--sm">Apache Junction Toilet Repair</a>
+          <a href="/locations/tempe/" class="btn btn--outline btn--sm">Tempe Toilet Repair</a>
+          <a href="/locations/" class="btn btn--outline btn--sm">View All 187 Cities &rarr;</a>
+        </div>
+      </div>
+
+      <h2 style="color: var(--color-primary); margin-bottom: var(--space-6);">Frequently Asked Questions: Mesa Toilet Repair</h2>
+      <div class="faq-list" style="margin-bottom: var(--space-10);">
+        {faqs.map((faq, i) => (
+          <details class="faq-item" id={`faq-${i}`} style="margin-bottom: var(--space-4); border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: var(--space-4); background: white;">
+            <summary class="faq-question" style="font-weight: 700; cursor: pointer; display: flex; justify-content: space-between; align-items: center; color: var(--color-primary);">
+              <span>{faq.q}</span>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+            </summary>
+            <div class="faq-answer" style="margin-top: var(--space-3); color: var(--color-text-secondary); line-height: 1.6;">
+              <p>{faq.a}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="cta-band" style="background: var(--color-primary); color: white; padding: var(--space-12) 0;">
+    <div class="container text-center">
+      <h2 style="color: white; font-size: 2rem; margin-bottom: var(--space-3);">Dealing With a Broken Toilet in Mesa?</h2>
+      <p style="font-size: 1.1rem; color: rgba(255,255,255,0.9); max-width: 600px; margin: 0 auto var(--space-6);">
+        Call our East Valley dispatch desk right now. A licensed plumber can be at your Mesa home promptly.
+      </p>
+      <a href={`tel:${phone.replace(/[^+\d]/g, '')}`} class="btn btn--accent btn--lg btn--phone">
+        Call Mesa Dispatch: {phone}
+      </a>
+    </div>
+  </section>
+
+  <Footer slot="footer" businessName={businessName} phone={phone} />
+</BaseLayout>
