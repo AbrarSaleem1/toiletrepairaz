@@ -589,11 +589,93 @@ const navLinks: NavLink[] = [
     gap: var(--space-3);
   }
 
-  /* Hide topbar on small screens */
-  @media (max-width: 640px) {
+  /* Responsive Header for Mobile Screens */
+  @media (max-width: 768px) {
+    .header-topbar {
+      padding: 6px 0;
+    }
+    .topbar-inner {
+      justify-content: center;
+      width: 100%;
+    }
+    .topbar-left {
+      justify-content: center;
+      width: 100%;
+      gap: var(--space-2);
+    }
     .topbar-hours,
     .topbar-divider {
-      display: none;
+      display: none !important;
+    }
+    .topbar-phone {
+      font-size: 0.825rem;
+    }
+
+    .nav-inner {
+      height: 60px;
+      gap: 8px;
+    }
+    .nav-logo {
+      min-width: 0;
+      flex-shrink: 1;
+      gap: 8px;
+    }
+    .logo-icon {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .logo-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+    .logo-name {
+      font-size: clamp(0.95rem, 3.8vw, 1.15rem);
+      line-height: 1.15;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: calc(100vw - 140px);
+    }
+    .nav-actions {
+      gap: 6px;
+      flex-shrink: 0;
+    }
+    .nav-phone-btn {
+      width: 36px;
+      height: 36px;
+      flex-shrink: 0;
+    }
+    .nav-phone-btn svg {
+      width: 16px;
+      height: 16px;
+    }
+    .mobile-toggle {
+      width: 36px;
+      height: 36px;
+      padding: 6px;
+      flex-shrink: 0;
+    }
+    .hamburger-line {
+      width: 20px;
+    }
+    .mobile-menu-footer {
+      padding: var(--space-4);
+    }
+  }
+
+  @media (max-width: 380px) {
+    .logo-name {
+      font-size: 0.85rem;
+      max-width: calc(100vw - 120px);
+    }
+    .logo-icon {
+      width: 30px;
+      height: 30px;
+    }
+    .logo-icon svg {
+      width: 16px;
+      height: 16px;
     }
   }
 </style>
