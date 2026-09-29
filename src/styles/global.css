@@ -524,59 +524,434 @@ p:last-child {
 @media (max-width: 480px) {
   .grid--6 { grid-template-columns: 1fr; }
   h1 {
-    font-size: clamp(1.45rem, 6.2vw, 1.95rem) !important;
-    line-height: 1.2 !important;
+    font-size: clamp(1.75rem, 5.5vw, 2.35rem);
+    line-height: 1.15;
   }
   h2 {
-    font-size: clamp(1.22rem, 5.2vw, 1.55rem) !important;
-    line-height: 1.25 !important;
+    font-size: clamp(1.35rem, 4.5vw, 1.85rem);
+    line-height: 1.25;
   }
 }
 
-/* --- Hero 2-Column Split Grid (Furnace Repair Pros Style) --- */
+/* ========================================================
+   FURNACE REPAIR PROS THEMED HERO SYSTEM
+   ======================================================== */
+.hero {
+  position: relative;
+  background: linear-gradient(145deg, #050d18 0%, #0c2340 50%, #0a1b33 100%);
+  color: #ffffff;
+  overflow: hidden;
+  padding: clamp(3.5rem, 6vw, 5.5rem) 0 clamp(3rem, 5vw, 4.5rem);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  width: 100%;
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  top: -20%;
+  right: -10%;
+  width: 650px;
+  height: 650px;
+  background: radial-gradient(circle, rgba(234, 88, 12, 0.2) 0%, rgba(251, 146, 60, 0.06) 45%, transparent 70%);
+  filter: blur(50px);
+}
+
+.hero::after {
+  content: "";
+  position: absolute;
+  z-index: 0;
+  pointer-events: none;
+  bottom: -15%;
+  left: -5%;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(217, 119, 6, 0.12) 0%, transparent 65%);
+  filter: blur(40px);
+}
+
+.hero-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 0), linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 0);
+  background-size: 38px 38px;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.hero-container,
 .hero-split-grid {
+  position: relative;
+  z-index: 1;
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-6);
   display: grid;
   grid-template-columns: 1.15fr 0.85fr;
-  gap: var(--space-10);
+  gap: clamp(2rem, 4vw, 4.5rem);
   align-items: center;
+  box-sizing: border-box;
   width: 100%;
-  max-width: 100%;
 }
 
+.hero-content,
 .hero-content-col {
-  width: 100%;
-  max-width: 100%;
+  position: relative;
+  z-index: 2;
   min-width: 0;
+  width: 100%;
 }
 
-@media (max-width: 960px) {
+/* Status Pill with Pulsing Live Dot */
+.hero-status-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  background: rgba(234, 88, 12, 0.12);
+  border: 1px solid rgba(234, 88, 12, 0.32);
+  padding: 0.38rem 1rem;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: #fb923c;
+  letter-spacing: 0.02em;
+  margin-bottom: 1.1rem;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pulse-indicator {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10px;
+  height: 10px;
+}
+
+.pulse-ping {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background-color: #ea580c;
+  opacity: 0.85;
+  animation: ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+.pulse-core {
+  position: relative;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #ea580c;
+}
+
+@keyframes ping {
+  75%, 100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+/* Eyebrow badge */
+.hero-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  color: #f1f5f9;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 0.36rem 0.95rem;
+  border-radius: 50px;
+  margin-bottom: 1.1rem;
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.hero-eyebrow svg {
+  color: #fb923c;
+}
+
+/* Big Furnace Repair Pros H1 with Gradient Highlight */
+.hero h1,
+.hero-content h1,
+.hero-content-col h1 {
+  font-size: clamp(2.3rem, 4.4vw, 3.6rem) !important;
+  font-weight: 900 !important;
+  line-height: 1.1 !important;
+  color: #ffffff !important;
+  margin-bottom: 1.2rem !important;
+  letter-spacing: -0.025em !important;
+  overflow-wrap: break-word;
+}
+
+.hero h1 .highlight,
+.hero-content h1 .highlight,
+.hero-content-col h1 .highlight {
+  background: linear-gradient(135deg, #fb923c, #ea580c 55%, #f59e0b);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline;
+}
+
+.hero-sub {
+  font-size: clamp(0.98rem, 1.5vw, 1.12rem);
+  color: #94a3b8;
+  line-height: 1.8;
+  margin-bottom: 1.8rem;
+  max-width: 580px;
+}
+
+/* Actions Row */
+.hero-actions,
+.hero-btn-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.hero-call-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.9rem;
+  background: linear-gradient(135deg, #ea580c, #c2410c);
+  color: #ffffff !important;
+  padding: 0.75rem 1.75rem;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 10px 25px -5px rgba(234, 88, 12, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.25);
+  transition: all 0.25s ease;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  box-sizing: border-box;
+}
+
+.hero-call-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 14px 30px -4px rgba(234, 88, 12, 0.65), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+  background: linear-gradient(135deg, #f97316, #ea580c);
+  color: #ffffff !important;
+}
+
+.hero-call-icon {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #ffffff;
+}
+
+.hero-call-text {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+
+.hero-call-label {
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  opacity: 0.88;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.hero-call-number {
+  font-size: 1.25rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+  line-height: 1.15;
+  color: #ffffff;
+}
+
+.hero-secondary-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  min-height: 56px;
+  padding: 0 1.6rem;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #ffffff !important;
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  box-sizing: border-box;
+}
+
+.hero-secondary-btn:hover {
+  background: rgba(255, 255, 255, 0.14);
+  border-color: rgba(255, 255, 255, 0.35);
+  transform: translateY(-2px);
+  color: #ffffff !important;
+}
+
+/* Hero Bullets (Trust Strip) */
+.hero-bullets,
+.hero-trust-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+}
+
+.hero-bullet {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 0.35rem 0.8rem;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+}
+
+.hero-bullet svg {
+  color: #22c55e;
+  flex-shrink: 0;
+}
+
+/* Media Card Frame */
+.hero-media {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+}
+
+.hero-card-frame {
+  position: relative;
+  border-radius: 20px;
+  overflow: hidden;
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  box-shadow: 0 30px 65px -15px rgba(0, 0, 0, 0.65), 0 0 40px rgba(234, 88, 12, 0.12);
+  background: #071526;
+}
+
+.hero-main-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  object-fit: cover;
+  aspect-ratio: 4 / 3;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-card-frame:hover .hero-main-img {
+  transform: scale(1.03);
+}
+
+.hero-same-day-badge {
+  position: absolute;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: rgba(7, 21, 38, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50px;
+  padding: 0.45rem 0.95rem;
+  color: #ffffff;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+}
+
+.hero-same-day-badge svg {
+  color: #fb923c;
+}
+
+/* Responsive Overrides */
+@media (max-width: 992px) {
+  .hero-container,
   .hero-split-grid {
     grid-template-columns: 1fr;
-    gap: var(--space-8);
+    gap: 3rem;
   }
-  .hero-split-grid .hero-content-col {
+  .hero-media {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero-content,
+  .hero-content-col {
     text-align: center;
   }
-  .hero-split-grid .hero-btn-row {
+  .hero-sub {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero-actions,
+  .hero-btn-row {
     justify-content: center;
   }
-  .hero-split-grid .hero-trust-pills {
+  .hero-bullets,
+  .hero-trust-pills {
     justify-content: center;
   }
 }
 
 @media (max-width: 640px) {
-  .hero-split-grid {
-    gap: var(--space-6);
+  .hero {
+    padding: 3rem 0 2.5rem;
   }
-  .hero-split-grid [style*="position: absolute; bottom:"] {
-    bottom: 10px !important;
-    left: 10px !important;
-    right: 10px !important;
-    padding: 6px 12px !important;
-    font-size: 0.775rem !important;
-    max-width: calc(100% - 20px) !important;
-    box-sizing: border-box !important;
+  .hero-container,
+  .hero-split-grid {
+    padding: 0 1rem;
+    gap: 2rem;
+  }
+  .hero h1,
+  .hero-content h1,
+  .hero-content-col h1 {
+    font-size: clamp(1.95rem, 6.5vw, 2.75rem) !important;
+    line-height: 1.12 !important;
+  }
+  .hero-actions,
+  .hero-btn-row {
+    flex-direction: column !important;
+    width: 100% !important;
+    gap: 12px !important;
+  }
+  .hero-call-btn,
+  .hero-secondary-btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+  .hero-bullets,
+  .hero-trust-pills {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 0.5rem !important;
+  }
+  .hero-bullet {
+    justify-content: center;
+  }
+  .hero-same-day-badge {
+    bottom: 0.85rem !important;
+    left: 0.85rem !important;
+    font-size: 0.75rem !important;
+    padding: 0.35rem 0.75rem !important;
   }
 }
 
