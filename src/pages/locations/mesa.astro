@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import LocationServices from '../../components/LocationServices.astro';
 
 const businessName = 'Arizona Toilet Repair Co.';
 const phone = '(833) 845-0906';
@@ -194,31 +195,14 @@ const schema = JSON.stringify({
         Our technicians carry specialized commercial equipment to service modern dual-flush systems, commercial Sloan flushometers in Mesa business corridors, and heavy-duty wax-free closet seals that withstand desert thermal cycles.
       </p>
 
-      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
-        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Primary Toilet Services in Mesa:</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Base & Tank Leak Stopping</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Immediate diagnosis of leaking wax seals, rusty tank bolts, and hairline porcelain fractures before bathroom subfloor rot develops.</p>
-            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Leak Solutions &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flapper-fill-valve-replacement/" style="color: inherit; text-decoration: none;">Fill Valve & Flapper Upgrades</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Installation of quiet, anti-siphon valves and chlorine-resistant silicone flappers designed to resist Mesa's heavy mineral tap water.</p>
-            <a href="/services/flapper-fill-valve-replacement/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Valve Options &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Closet Flange Reconstruction</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Specialized mechanical flange rings to stabilize rocking bowls and fix cracked PVC collars embedded in concrete slabs.</p>
-            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Flange Services &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/emergency-toilet-repair/" style="color: inherit; text-decoration: none;">24/7 Emergency Dispatch</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Immediate on-call response across Mesa for overflowing fixtures, broken supply shutoff valves, and sewer line backups.</p>
-            <a href="/services/emergency-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Emergency Help &rarr;</a>
-          </div>
-        </div>
-      </div>
+    </div>
+  </section>
+
+  <!-- Complete Dedicated Services (Matches Homepage Grid Exactly) -->
+  <LocationServices cityName="Mesa" />
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
 
       <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Local Water Dynamics in Mesa, Arizona</h2>
       <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">

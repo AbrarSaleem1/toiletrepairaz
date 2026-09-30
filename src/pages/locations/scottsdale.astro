@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import LocationServices from '../../components/LocationServices.astro';
 
 const businessName = 'Arizona Toilet Repair Co.';
 const phone = '(833) 845-0906';
@@ -194,31 +195,14 @@ const schema = JSON.stringify({
         Our master plumbers arrive with precision test gauges, specialized pneumatic flush tools, non-marring wrenches, and direct manufacturer replacement valves to ensure repairs protect your investment without causing structural or aesthetic tile damage.
       </p>
 
-      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
-        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Scottsdale Toilet Services We Deliver:</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Concealed & Base Leak Repair</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Stop hidden leaks around marble floor seals, in-wall carrier discharge joints, and high-pressure stainless braided supply lines.</p>
-            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Leak Procedures &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/running-toilet-repair/" style="color: inherit; text-decoration: none;">Dual-Flush & Cartridge Rebuilds</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Rebuild leaking dual-flush mechanisms, descale European siphon cartridges, and stop phantom water loss on luxury toilets.</p>
-            <a href="/services/running-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Running Toilet Repairs &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Precision Non-Marring Unclogging</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Vinyl-sheathed mechanical augering that clears deep waste stoppages without marking polished porcelain or designer ceramic finishes.</p>
-            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Unclogging Methods &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/commercial-toilet-repair/" style="color: inherit; text-decoration: none;">Commercial Facility Restrooms</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Prompt service for Scottsdale resorts, retail galleries, corporate centers, and restaurants along Scottsdale Road and Old Town.</p>
-            <a href="/services/commercial-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Commercial Restroom Repair &rarr;</a>
-          </div>
-        </div>
-      </div>
+    </div>
+  </section>
+
+  <!-- Complete Dedicated Services (Matches Homepage Grid Exactly) -->
+  <LocationServices cityName="Scottsdale" />
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
 
       <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Water Hardness Challenges in Scottsdale</h2>
       <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">

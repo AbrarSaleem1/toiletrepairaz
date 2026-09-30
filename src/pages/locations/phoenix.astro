@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import LocationServices from '../../components/LocationServices.astro';
 
 const businessName = 'Arizona Toilet Repair Co.';
 const phone = '(833) 845-0906';
@@ -199,32 +200,14 @@ const schema = JSON.stringify({
         Whether you own a historic 1940s ranch home in the Encanto district with deteriorating cast-iron closet rings or a contemporary two-story residence in Desert Ridge experiencing phantom water cycling, we diagnose the exact failure point and restore dependable operation quickly.
       </p>
 
-      <!-- Featured Services in Phoenix -->
-      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
-        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Core Toilet Services We Deliver in Phoenix:</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Obstinate Clog Clearing</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Mechanical drop-head augering that extracts deep blockages without scratching decorative Kohler, American Standard, or Toto bowl glaze.</p>
-            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Unclogging Process &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/running-toilet-repair/" style="color: inherit; text-decoration: none;">Phantom Flush & Running Repair</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Eliminate continuous tank refills and hissing valves that drive up high-tier Phoenix municipal water utility rates.</p>
-            <a href="/services/running-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Running Toilet Fixes &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Slab Closet Flange Reconstruction</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Reinforce cracked PVC collars and anchor corroded cast-iron pipes into Phoenix post-tension concrete slabs to stop wobbling bowls.</p>
-            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Flange Repair Details &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/emergency-toilet-repair/" style="color: inherit; text-decoration: none;">24/7 Emergency Dispatch</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Immediate on-site arrival across Phoenix for overflowing bowls, backed-up sewer branches, and burst shutoff lines.</p>
-            <a href="/services/emergency-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Emergency Procedures &rarr;</a>
-          </div>
-        </div>
-      </div>
+    </div>
+  </section>
+
+  <!-- Complete Dedicated Services (Matches Homepage Grid Exactly) -->
+  <LocationServices cityName="Phoenix" />
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
 
       <!-- Specific Local Environmental Factors in Phoenix -->
       <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Why Phoenix Tap Water Destroys Toilet Components</h2>

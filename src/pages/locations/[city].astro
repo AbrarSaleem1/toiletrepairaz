@@ -4,6 +4,7 @@ import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { arizonaCities, type CityData, servicesList } from '../../data/cities';
 import { getCityRegionalContext } from '../../data/cityContext';
+import LocationServices from '../../components/LocationServices.astro';
 
 export async function getStaticPaths() {
   const existingSlugs = ['phoenix', 'mesa', 'scottsdale', 'chandler', 'gilbert'];
@@ -298,112 +299,15 @@ const schema = JSON.stringify({
         </div>
       )}
 
-      <!-- SECTION 2: Comprehensive Internal Linking to All 7 Services -->
-      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin: var(--space-10) 0 var(--space-12);">
-        <h3 style="color: var(--color-primary); font-size: 1.35rem; margin-bottom: var(--space-3);">Dedicated Toilet Services We Provide in {cityName}:</h3>
-        <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-6);">
-          Click any specialized service below to review our diagnostic procedures, repair options, and upfront pricing:
-        </p>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-5);">
-          
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
-              <a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Clogged Toilet Unclogging</a>
-            </h4>
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
-              Heavy-duty drop-head closet augers that safely hook and extract foreign items without scratching ceramic glazes.
-            </p>
-            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
-              Explore Unclogging Solutions &rarr;
-            </a>
-          </div>
+    </div>
+  </section>
 
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
-              <a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Toilet Leak Repair</a>
-            </h4>
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
-              Stop weeping base seals, tank-to-bowl gasket failures, supply line leaks, and hidden subfloor moisture damage.
-            </p>
-            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
-              View Leak Detection & Repair &rarr;
-            </a>
-          </div>
+  <!-- SECTION 2: Complete Dedicated Services (Matches Homepage Grid Exactly) -->
+  <LocationServices cityName={cityName} countyName={countyName} />
 
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
-              <a href="/services/running-toilet-repair/" style="color: inherit; text-decoration: none;">Running Toilet Repair</a>
-            </h4>
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
-              Eliminate phantom flushes and hissing fill valves that waste hundreds of gallons per day on {cityName} water bills.
-            </p>
-            <a href="/services/running-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
-              Stop Phantom Tank Refills &rarr;
-            </a>
-          </div>
-
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
-              <a href="/services/flapper-fill-valve-replacement/" style="color: inherit; text-decoration: none;">Flapper & Fill Valve Replacement</a>
-            </h4>
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
-              Commercial-grade silicone flappers and anti-siphon intake valves engineered to withstand high chloramine levels.
-            </p>
-            <a href="/services/flapper-fill-valve-replacement/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
-              Upgrade Tank Internals &rarr;
-            </a>
-          </div>
-
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
-              <a href="/services/emergency-toilet-repair/" style="color: inherit; text-decoration: none;">Emergency Toilet Repair</a>
-            </h4>
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
-              Rapid 24/7 emergency dispatch for overflowing bowls, sewage backups, and catastrophic shutoff valve failures.
-            </p>
-            <a href="/services/emergency-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
-              Get 24/7 Immediate Help &rarr;
-            </a>
-          </div>
-
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
-              <a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Toilet Flange Repair</a>
-            </h4>
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
-              Rebuild rotted cast-iron collars, fractured PVC flanges, and secure wobbling bowls directly to the slab or subfloor.
-            </p>
-            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
-              Rebuild Flange Collars &rarr;
-            </a>
-          </div>
-
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
-              <a href="/services/commercial-toilet-repair/" style="color: inherit; text-decoration: none;">Commercial Toilet Repair</a>
-            </h4>
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
-              Commercial Sloan and Zurn flushometer servicing, ADA compliance adjustments, and high-traffic facility restrooms.
-            </p>
-            <a href="/services/commercial-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
-              Commercial Restroom Service &rarr;
-            </a>
-          </div>
-
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light); display: flex; flex-direction: column; justify-content: center;">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2); font-size: 1.1rem;">
-              <a href="/services/" style="color: inherit; text-decoration: none;">Explore All Services</a>
-            </h4>
-            <p style="font-size: 0.9rem; color: var(--color-text-secondary); margin-bottom: var(--space-3); line-height: 1.5;">
-              View our complete directory of professional toilet plumbing services offered across the entire state of Arizona.
-            </p>
-            <a href="/services/" style="font-weight: 700; color: var(--color-accent); font-size: 0.85rem;">
-              View Full Service Catalog &rarr;
-            </a>
-          </div>
-
-        </div>
-      </div>
+  <!-- SECTION 3: Detailed Local Environmental & Geological Breakdown -->
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 920px; margin: 0 auto;">
 
       <!-- SECTION 3: Detailed Local Environmental & Geological Breakdown -->
       <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Local Water Quality & Plumbing Realities in {countyName} County</h2>

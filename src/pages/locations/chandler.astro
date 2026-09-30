@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import LocationServices from '../../components/LocationServices.astro';
 
 const businessName = 'Arizona Toilet Repair Co.';
 const phone = '(833) 845-0906';
@@ -194,31 +195,14 @@ const schema = JSON.stringify({
         In established neighborhoods closer to Downtown Chandler and Andersen Springs, older plumbing lines encounter foundation settling that pulls closet flanges out of alignment. Our licensed technicians bring heavy-duty mechanical tools, factory-tested replacement valves, and reinforced seal kits to resolve issues permanently.
       </p>
 
-      <div style="background: var(--color-bg-alt); padding: var(--space-8); border-radius: var(--radius-lg); margin-bottom: var(--space-12);">
-        <h3 style="color: var(--color-primary); font-size: 1.4rem; margin-bottom: var(--space-4);">Our Specialized Services in Chandler:</h3>
-        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: var(--space-6);">
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/toilet-leak-repair/" style="color: inherit; text-decoration: none;">Second-Story Base Leak Repair</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Stop weeping base seals and cracked wax rings before wastewater damages first-floor ceilings and structural floor joists.</p>
-            <a href="/services/toilet-leak-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Leak Procedures &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/flange-repair/" style="color: inherit; text-decoration: none;">Closet Flange Reconstruction</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Repair cracked PVC collars and anchor wobbling toilet bowls rock-solid into concrete slabs using stainless steel brackets.</p>
-            <a href="/services/flange-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Flange Services &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/running-toilet-repair/" style="color: inherit; text-decoration: none;">Phantom Flush & Running Repair</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Eliminate continuous tank cycling, hissing fill valves, and high monthly utility bills with commercial silicone flappers.</p>
-            <a href="/services/running-toilet-repair/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Running Toilet Fixes &rarr;</a>
-          </div>
-          <div style="background: white; padding: var(--space-5); border-radius: var(--radius-md); border: 1px solid var(--color-border-light);">
-            <h4 style="color: var(--color-primary); margin-bottom: var(--space-2);"><a href="/services/clogged-toilet-unclogging/" style="color: inherit; text-decoration: none;">Non-Marring Heavy Clog Removal</a></h4>
-            <p style="font-size: 0.95rem; color: var(--color-text-secondary); margin-bottom: var(--space-3);">Drop-head auger technology that extracts foreign items and deep sewer branch blockages without scratching bowl glaze.</p>
-            <a href="/services/clogged-toilet-unclogging/" style="font-weight: 700; color: var(--color-accent); font-size: 0.875rem;">View Unclogging Solutions &rarr;</a>
-          </div>
-        </div>
-      </div>
+    </div>
+  </section>
+
+  <!-- Complete Dedicated Services (Matches Homepage Grid Exactly) -->
+  <LocationServices cityName="Chandler" />
+
+  <section class="section" style="padding: var(--space-16) 0;">
+    <div class="container" style="max-width: 900px; margin: 0 auto;">
 
       <h2 style="color: var(--color-primary); margin-bottom: var(--space-4);">Water Hardness Realities in Chandler, Arizona</h2>
       <p style="font-size: 1.05rem; line-height: 1.7; color: var(--color-text-secondary); margin-bottom: var(--space-6);">

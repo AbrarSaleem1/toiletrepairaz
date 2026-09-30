@@ -2,6 +2,7 @@
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import LocationServices from '../../components/LocationServices.astro';
 import { arizonaCities } from '../../data/cities';
 
 const businessName = 'Arizona Toilet Repair Co.';
@@ -185,6 +186,9 @@ const schema = JSON.stringify({
       </div>
     </div>
   </section>
+
+  <!-- Complete Dedicated Services (Matches Homepage Grid Exactly) -->
+  <LocationServices />
 
   <!-- Quick Filter & All Cities Directory -->
   <section class="section" style="padding: var(--space-16) 0;">
